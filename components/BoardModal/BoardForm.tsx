@@ -89,9 +89,9 @@ export default function BoardForm({ type, open, setOpen }: props) {
     if (boardTitle !== title) {
       await updateBoardTitle(id as string, data);
     }
+    await updateColumns(id as string, columns, originalValues!, setColumns);
     await deleteColumns(columns, originalValues!, setColumns);
     await addColumns(id as string, columns, originalValues!, setColumns);
-    await updateColumns(id as string, columns, originalValues!, setColumns);
 
     const columnErrors = Object.values(columns).some((value) => value.error);
     if (columnErrors) return;

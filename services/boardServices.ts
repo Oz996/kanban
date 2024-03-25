@@ -76,7 +76,6 @@ export const updateColumns = async (
 
       if (existingColumn) {
         const res = await updateColumn(id, existingColumn);
-        return res;
       }
     }
   } catch (error: any) {
