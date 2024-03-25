@@ -8,7 +8,7 @@ import { useFetchBoards } from "@/hooks/useFetchBoards";
 
 export default function Page() {
   const { data: session } = useSession();
-  const route = useRouter();
+  const router = useRouter();
 
   const { data: boards } = useFetchBoards();
   console.log("boards", boards);
@@ -18,8 +18,8 @@ export default function Page() {
   const firstBoardId = boards && boards.length > 0 ? boards[0]?.id : null;
 
   useEffect(() => {
-    if (session && firstBoardId) route.push(`/board/${firstBoardId}`);
-  }, [session, route, firstBoardId]);
+    if (session && firstBoardId) router.push(`/board/${firstBoardId}`);
+  }, [session, router, firstBoardId]);
 
   return (
     <section className="h-screen pt-24">
