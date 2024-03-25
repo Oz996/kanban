@@ -79,7 +79,7 @@ export default function BoardDropdown({ isLocked }: props) {
           <DropdownMenuItem asChild>
             <span
               onClick={() => signOut()}
-              className="pl-3 py-0 text-md capitalize text-yellow-200 hover:opacity-60 duration-200 cursor-pointer"
+              className="pl-3 pt-0 text-md capitalize hover:opacity-60 duration-200 cursor-pointer"
             >
               sign out
             </span>
