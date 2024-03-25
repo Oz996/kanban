@@ -1,26 +1,23 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import eyeOpen from "@/assets/icon-show-sidebar.svg";
 import eyeClosed from "@/assets/icon-hide-sidebar.svg";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useFetchBoards } from "@/hooks/useFetchBoards";
 
 export default function Page() {
   const { data: session } = useSession();
+  const route = useRouter();
 
   const [showSidebar, setShowSidebar] = useState(false);
+  const { data: boards } = useFetchBoards();
+
+  console.log("page data", boards);
+
+  console.log("sesh", session);
 
   return (
     <section className="text-white flex flex-col">

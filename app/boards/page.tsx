@@ -9,16 +9,14 @@ import { Board } from "@/types";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getBoards } from "../../services/services";
+import { useFetchBoards } from "@/hooks/useFetchBoards";
 
 export default function Boards() {
   const { data: session } = useSession();
   const router = useRouter();
   const [showSidebar, setShowSidebar] = useState(false);
 
-  const { data: boards } = useQuery({
-    queryKey: ["boards"],
-    queryFn: getBoards,
-  });
+  const { data: boards } = useFetchBoards();
 
   console.log(boards);
 
