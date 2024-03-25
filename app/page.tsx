@@ -23,8 +23,11 @@ export default function Page() {
 
   return (
     <section className="h-screen pt-24">
-      <div className="text-white font-semibold flex flex-col justify-center items-center">
-        <h1 className="text-3xl">Sign in</h1>
+      <div className="text-white font-semibold flex flex-col justify-center items-center gap-5">
+        <hgroup className="text-center">
+          <h1 className="text-3xl">Welcome to Kanban Task Manager</h1>
+          <p className="text-2xl">Sign in</p>
+        </hgroup>
         <GoogleAuthButton />
       </div>
     </section>
