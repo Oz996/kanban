@@ -13,6 +13,8 @@ import axios from "axios";
 import { getBaseUrl } from "@/utils/getBaseUrl";
 import { successToast } from "@/utils/successToast";
 import { updateTask } from "../../services/taskServices";
+import { useBoard } from "@/hooks/useBoard";
+import { errorToast } from "@/utils/errorToast";
 
 interface props {
   task: Task;
@@ -30,8 +32,8 @@ export default function ViewTaskSelect({
   setStatus,
 }: props) {
   const queryClient = useQueryClient();
-
-  console.log("column?", column);
+  const { board } = useBoard();
+  const isLocked = board?.isLocked;
 
   const handleChangeTaskColumn = async (id: string) => {
     try {
@@ -58,6 +60,7 @@ export default function ViewTaskSelect({
   };
 
   const handleChange = (value: string) => {
+    if (isLocked) return errorToast("edit");
     setStatus(value);
     const selectedColumn = columns?.find((column) => column.title === value);
     if (selectedColumn) {

@@ -133,7 +133,7 @@ export default function BoardForm({ type, open, setOpen }: props) {
       <BoardColumns columns={columns} setColumns={setColumns} />
 
       <ButtonPrimary
-        disabled={isLocked}
+        disabled={isLocked && updateMode}
         type="submit"
         size="sm"
         color="primary"

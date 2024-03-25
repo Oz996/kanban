@@ -37,7 +37,7 @@ export default function BoardDropdown({ isLocked }: props) {
           {/* temporary solution */}
           <DropdownMenuItem
             asChild
-            className="text-md capitalize text-mediumGrey hover:opacity-60 duration-200 cursor-pointer"
+            className="text-md capitalize text-mediumGrey hover:opacity-60 duration-200"
           >
             {isLocked ? (
               <span

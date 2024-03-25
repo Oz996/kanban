@@ -29,12 +29,7 @@ export default function ViewTaskModal({
         <DialogHeader>
           <DialogTitle className="text-lg font-semibold flex justify-between items-center">
             {task?.title}
-            <TaskDropdown
-              setOpen={setOpen}
-              column={column!}
-              columns={columns!}
-              task={task!}
-            />
+            <TaskDropdown column={column!} columns={columns!} task={task!} />
           </DialogTitle>
         </DialogHeader>
         <DialogDescription className="heading-md text-mediumGrey mb-8">

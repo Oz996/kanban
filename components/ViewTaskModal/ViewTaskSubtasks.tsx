@@ -6,6 +6,8 @@ import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { getBaseUrl } from "@/utils/getBaseUrl";
 import { updateSubtask } from "@/services/services";
+import { useBoard } from "@/hooks/useBoard";
+import { errorToast } from "@/utils/errorToast";
 
 interface props {
   subtasks: Subtask[];
@@ -13,11 +15,14 @@ interface props {
 
 export default function ViewTaskSubtasks({ subtasks }: props) {
   const queryClient = useQueryClient();
+  const { board } = useBoard();
 
   const completed = subtasks.filter((subtask) => subtask.completed);
+  const isLocked = board?.isLocked;
 
   const handleSubtaskCompleted = async (subtask: Subtask) => {
     try {
+      if (isLocked) return errorToast("edit");
       // we check if completed value is falsy or truthy and set it to the opposite
       const newCompletedStatus = !subtask.completed;
       const data = {
@@ -45,11 +50,7 @@ export default function ViewTaskSubtasks({ subtasks }: props) {
           className="bg-veryDarkGrey p-3 rounded flex gap-3 items-center cursor-pointer hover:bg-mainPurple hover:bg-opacity-60 duration-200"
           onClick={() => handleSubtaskCompleted(subtask)}
         >
-          <Checkbox
-            onCheckedChange={() => handleSubtaskCompleted(subtask)}
-            checked={subtask.completed}
-            id={subtask.id}
-          />
+          <Checkbox checked={subtask.completed} id={subtask.id} />
           <Label
             htmlFor={subtask.id}
             className={classNames({

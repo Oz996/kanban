@@ -17,20 +17,13 @@ interface props {
   task: Task;
   columns: Column[];
   column: Column;
-  setOpen: React.Dispatch<SetStateAction<boolean>>;
 }
-export default function TaskDropdown({
-  task,
-  column,
-  columns,
-  setOpen,
-}: props) {
+export default function TaskDropdown({ task, column, columns }: props) {
   const { board } = useBoard();
   const isLocked = board?.isLocked;
 
   const handleDisabledClick = () => {
     errorToast("delete");
-    setOpen(false);
   };
   return (
     <DropdownMenu>
