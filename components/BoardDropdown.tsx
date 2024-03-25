@@ -42,7 +42,7 @@ export default function BoardDropdown({ isLocked }: props) {
             {isLocked ? (
               <span
                 onClick={handleDisabledClick}
-                className="pl-3 py-0 text-md capitalize text-mediumGrey opacity-60 duration-200 cursor-not-allowed"
+                className="pl-3 py-0 text-md capitalize text-mediumGrey opacity-60"
               >
                 edit board
               </span>
@@ -61,7 +61,7 @@ export default function BoardDropdown({ isLocked }: props) {
             {isLocked ? (
               <span
                 onClick={handleDisabledClick}
-                className="pl-3 py-0 text-md  capitalize text-danger opacity-40 duration-200 cursor-not-allowed"
+                className="pl-3 py-0 text-md  capitalize text-danger opacity-40"
               >
                 delete board
               </span>

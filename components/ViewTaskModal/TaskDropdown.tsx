@@ -9,13 +9,29 @@ import {
 import TaskModal from "../TaskModal/TaskModal";
 import DeleteModal from "../DeleteModal";
 import { Column, Task } from "@/types";
+import { useBoard } from "@/hooks/useBoard";
+import { errorToast } from "@/utils/errorToast";
+import { SetStateAction } from "react";
 
 interface props {
   task: Task;
   columns: Column[];
   column: Column;
+  setOpen: React.Dispatch<SetStateAction<boolean>>;
 }
-export default function TaskDropdown({ task, column, columns }: props) {
+export default function TaskDropdown({
+  task,
+  column,
+  columns,
+  setOpen,
+}: props) {
+  const { board } = useBoard();
+  const isLocked = board?.isLocked;
+
+  const handleDisabledClick = () => {
+    errorToast("delete");
+    setOpen(false);
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="relative">
@@ -52,15 +68,24 @@ export default function TaskDropdown({ task, column, columns }: props) {
             ></TaskModal>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-            <DeleteModal
-              type="task"
-              task={task}
-              trigger={
-                <span className="pl-3 text-md capitalize text-danger hover:opacity-60 duration-200 cursor-pointer">
-                  delete task
-                </span>
-              }
-            ></DeleteModal>
+            {isLocked ? (
+              <span
+                onClick={handleDisabledClick}
+                className="pl-3 text-md capitalize text-danger opacity-40"
+              >
+                delete task
+              </span>
+            ) : (
+              <DeleteModal
+                type="task"
+                task={task}
+                trigger={
+                  <span className="pl-3 text-md capitalize text-danger hover:opacity-60 duration-200 cursor-pointer">
+                    delete task
+                  </span>
+                }
+              ></DeleteModal>
+            )}
           </DropdownMenuItem>
         </div>
       </DropdownMenuContent>

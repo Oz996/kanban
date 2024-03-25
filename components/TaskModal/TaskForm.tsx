@@ -12,6 +12,7 @@ import TaskTitleInput from "./TaskTitleInput";
 import TaskDescription from "./TaskDescription";
 import TaskSubtasks from "./TaskSubtasks";
 import TaskSelect from "./TaskSelect";
+import { useBoard } from "@/hooks/useBoard";
 
 const initState = {
   description: "",
@@ -50,9 +51,10 @@ export default function TaskForm({
 
   const addMode = type === "add";
   const updateMode = type === "update";
-  const queryClient = useQueryClient();
 
-  console.log("status", status);
+  const queryClient = useQueryClient();
+  const { board } = useBoard();
+  const isLocked = board?.isLocked;
 
   // if we are adding a new task set the default column to the first column of the board
   useEffect(() => {
@@ -158,7 +160,12 @@ export default function TaskForm({
       </div>
 
       <div className="w-full flex flex-col">
-        <ButtonPrimary type="submit" size="sm" color="primary">
+        <ButtonPrimary
+          disabled={isLocked}
+          type="submit"
+          size="sm"
+          color="primary"
+        >
           {addMode ? "create task" : "edit task"}
         </ButtonPrimary>
       </div>

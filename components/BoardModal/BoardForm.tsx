@@ -60,6 +60,7 @@ export default function BoardForm({ type, open, setOpen }: props) {
 
   const boardTitle = board?.title;
   const originalValues = board?.columns;
+  const isLocked = board?.isLocked;
   // -----------------------------------------------------
 
   useEffect(() => {
@@ -131,7 +132,12 @@ export default function BoardForm({ type, open, setOpen }: props) {
       />
       <BoardColumns columns={columns} setColumns={setColumns} />
 
-      <ButtonPrimary type="submit" size="sm" color="primary">
+      <ButtonPrimary
+        disabled={isLocked}
+        type="submit"
+        size="sm"
+        color="primary"
+      >
         {addMode ? "create new board" : updateMode ? "update board" : ""}
       </ButtonPrimary>
     </form>
