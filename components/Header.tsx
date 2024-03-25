@@ -13,13 +13,18 @@ import ButtonPrimary from "./ButtonPrimary";
 import { useEffect, useState } from "react";
 import { useSidebar } from "@/hooks/useSidebar";
 import Sidebar from "./Sidebar";
+import { usePathname } from "next/navigation";
+import classNames from "classnames";
 
 export default function Header() {
   const [mobileBoard, setMobileBoard] = useState(false);
   const { board } = useBoard();
   const { showSidebar, setShowSidebar } = useSidebar();
+
+  const path = usePathname();
   const columns = board?.columns;
 
+  const isHomePage = path === "/";
   const isMobile = useMediaQuery("only screen and (max-width: 768px)");
 
   const handleDisplayMobileBoard = () => {
@@ -48,7 +53,11 @@ export default function Header() {
   return (
     <header
       role="banner"
-      className="absolute left-0 right-0 h-[6rem] bg-darkGrey items-center flex border-b border-linesDark"
+      className={classNames({
+        "absolute left-0 right-0 h-[6rem] bg-darkGrey items-center flex border-b border-linesDark":
+          true,
+        hidden: isHomePage,
+      })}
     >
       <div className="flex justify-between text-white px-4 md:px-6 w-full">
         <div className="flex gap-5 md:gap-32 items-center">
