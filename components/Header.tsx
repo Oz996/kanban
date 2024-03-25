@@ -12,10 +12,9 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import ButtonPrimary from "./ButtonPrimary";
 import { useEffect, useState } from "react";
 import { useSidebar } from "@/hooks/useSidebar";
-import Sidebar from "./Sidebar";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
-import { errorToast } from "@/utils/errorToast";
+import Sidebar from "./Sidebar";
 
 export default function Header() {
   const [mobileBoard, setMobileBoard] = useState(false);

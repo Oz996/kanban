@@ -11,7 +11,7 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import { useFetchBoard } from "@/hooks/useFetchBoard";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import Sidebar from "../../../components/Sidebar";
+import Sidebar from "@/components/Sidebar";
 
 export default function Page({ params }: { params: { id: any } }) {
   const [openedByClick, setOpenedByClick] = useState(false);
