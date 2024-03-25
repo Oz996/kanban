@@ -15,6 +15,7 @@ import { useSidebar } from "@/hooks/useSidebar";
 import Sidebar from "./Sidebar";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
+import { errorToast } from "@/utils/errorToast";
 
 export default function Header() {
   const [mobileBoard, setMobileBoard] = useState(false);
@@ -38,14 +39,26 @@ export default function Header() {
     if (!isMobile) setMobileBoard(false);
   }, [isMobile]);
 
+  const handleLockedBoard = () => {
+    if (board?.isLocked) errorToast("edit");
+  };
+
   const modalTrigger = (
-    <ButtonPrimary type="button" color="primary" size="sm">
+    <ButtonPrimary
+      onClick={handleLockedBoard}
+      type="button"
+      color="primary"
+      size="sm"
+    >
       + add new task
     </ButtonPrimary>
   );
 
   const modalTriggerMobile = (
-    <Button className="rounded-full w-[3.5rem] text-3xl pb-4 text-center bg-mainPurple hover:bg-secondaryPurple">
+    <Button
+      onClick={handleLockedBoard}
+      className="rounded-full w-[3.5rem] text-3xl pb-4 text-center bg-mainPurple hover:bg-secondaryPurple"
+    >
       +
     </Button>
   );

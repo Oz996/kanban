@@ -1,11 +1,8 @@
 "use client";
-import { getBoard } from "@/services/services";
-import { Column, ColumnInput } from "@/types";
-import { useQuery } from "@tanstack/react-query";
+import {} from "@/services/services";
+import { Column } from "@/types";
 import Columns from "./Columns";
 import Sidebar from "@/components/Sidebar";
-import ButtonPrimary from "@/components/ButtonPrimary";
-import ColumnModal from "@/components/ColumModal";
 import BoardModal from "@/components/BoardModal/BoardModal";
 import { useEffect, useState } from "react";
 import { useBoard } from "@/hooks/useBoard";
@@ -13,8 +10,7 @@ import classNames from "classnames";
 import { useSidebar } from "@/hooks/useSidebar";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { useFetchBoard } from "@/hooks/useFetchBoard";
-import { options } from "@/app/api/auth/[...nextauth]/options";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 export default function Page({ params }: { params: { id: any } }) {

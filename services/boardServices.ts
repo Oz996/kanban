@@ -23,18 +23,8 @@ export const createBoard = async (
   setColumns: React.Dispatch<SetStateAction<ColumnInput[]>>
 ) => {
   try {
-    // set value for each error property of input if its empty
-    const invalidColumns = columns.filter(
-      (column: any) => !column.title.trim()
-    );
-    console.log("invalidColumns", invalidColumns);
-    if (invalidColumns.length > 0) {
-      for (const column of invalidColumns) {
-        column.error = "Can't be empty";
-      }
-      setColumns([...columns]);
-      return;
-    }
+    const invalid = invalidInputs("column", columns, setColumns);
+    if (invalid) return;
 
     const { title } = data;
     const postData = {

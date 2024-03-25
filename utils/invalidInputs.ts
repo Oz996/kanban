@@ -3,6 +3,7 @@ import React, { SetStateAction } from "react";
 
 type ArrayType = ColumnInput | SubtaskInput;
 
+// set value for each error property of input if its empty
 export const invalidInputs = (
   type: "column" | "task",
   array: Array<ArrayType>,

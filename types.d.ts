@@ -8,6 +8,7 @@ export interface IObject {
 export interface Board extends IObject {
   title: string;
   columns: Column[];
+  isLocked?: boolean;
 }
 
 export interface Column extends IObject {
