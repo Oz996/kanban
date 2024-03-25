@@ -2,7 +2,6 @@
 import {} from "@/services/services";
 import { Column } from "@/types";
 import Columns from "./Columns";
-import Sidebar from "@/components/Sidebar";
 import BoardModal from "@/components/BoardModal/BoardModal";
 import { useEffect, useState } from "react";
 import { useBoard } from "@/hooks/useBoard";
@@ -12,6 +11,7 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import { useFetchBoard } from "@/hooks/useFetchBoard";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import Sidebar from "@/components/Sidebar";
 
 export default function Page({ params }: { params: { id: any } }) {
   const [openedByClick, setOpenedByClick] = useState(false);
