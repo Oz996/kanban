@@ -9,8 +9,6 @@ import {
 } from "../ui/select";
 import { Column, Task } from "@/types";
 import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { getBaseUrl } from "@/utils/getBaseUrl";
 import { successToast } from "@/utils/successToast";
 import { updateTask } from "../../services/taskServices";
 import { useBoard } from "@/hooks/useBoard";

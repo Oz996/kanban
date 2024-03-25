@@ -28,8 +28,8 @@ import DynamicInput from "./DynamicInput";
 import { z } from "zod";
 import { taskSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { postTask, updateTask } from "./taskService";
 import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
+import { createTask, updateTask } from "@/services/taskServices";
 
 const initState = {
   description: "",
@@ -95,7 +95,7 @@ export default function TaskModal({
   };
 
   const handlePostTask = async (data: FieldValues) => {
-    await postTask({ subtasks, setSubtasks, status, columnId, data });
+    await createTask({ subtasks, setSubtasks, status, columnId, data });
     invalidateBoard();
   };
 

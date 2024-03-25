@@ -1,5 +1,4 @@
 import { useBoard } from "@/hooks/useBoard";
-import { titleSchema } from "@/lib/schema";
 import { ColumnInput } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
@@ -7,18 +6,18 @@ import { useParams } from "next/navigation";
 import { SetStateAction, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { DialogFooter } from "./ui/dialog";
 import ButtonPrimary from "./ButtonPrimary";
+import { invalidateQuery } from "@/lib/utils/invalidateQuery";
+import BoardTitleInput from "./BoardTitleInput";
+import BoardColumns from "./BoardColumns";
+import { boardSchema } from "@/lib/schema";
 import {
   addColumns,
   createBoard,
   deleteColumns,
   updateBoardTitle,
   updateColumns,
-} from "./boardService";
-import { invalidateQuery } from "@/lib/utils/invalidateQuery";
-import BoardTitleInput from "./BoardTitleInput";
-import BoardColumns from "./BoardColumns";
+} from "@/services/boardServices";
 
 interface props {
   type: "add" | "update";
@@ -32,7 +31,7 @@ export const initState: ColumnInput = {
   error: "",
 };
 
-export type Inputs = z.infer<typeof titleSchema>;
+export type Inputs = z.infer<typeof boardSchema>;
 
 export default function BoardForm({ type, open, setOpen }: props) {
   // States and variables ---------------------------------
@@ -43,7 +42,7 @@ export default function BoardForm({ type, open, setOpen }: props) {
     reset,
     formState: { errors },
   } = useForm<Inputs>({
-    resolver: zodResolver(titleSchema),
+    resolver: zodResolver(boardSchema),
   });
 
   const { board } = useBoard();
@@ -85,11 +84,11 @@ export default function BoardForm({ type, open, setOpen }: props) {
       await updateBoardTitle(id as string, data);
     }
     // update existing columns
-    await updateColumns(id as string, columns, originalValues!);
+    await updateColumns(id as string, columns, originalValues!, setColumns);
     // delete removed columns
-    await deleteColumns(columns, originalValues!);
+    await deleteColumns(columns, originalValues!, setColumns);
     // post added columns
-    await addColumns(id as string, columns, originalValues!);
+    await addColumns(id as string, columns, originalValues!, setColumns);
 
     invalidateQuery(queryClient, "boards");
     setOpen(false);
