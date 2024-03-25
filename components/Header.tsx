@@ -27,6 +27,7 @@ export default function Header() {
 
   const isHomePage = path === "/";
   const isMobile = useMediaQuery("only screen and (max-width: 768px)");
+  const isLocked = board?.isLocked;
 
   const handleDisplayMobileBoard = () => {
     if (isMobile) {
@@ -39,24 +40,15 @@ export default function Header() {
     if (!isMobile) setMobileBoard(false);
   }, [isMobile]);
 
-  const handleLockedBoard = () => {
-    if (board?.isLocked) errorToast("edit");
-  };
-
   const modalTrigger = (
-    <ButtonPrimary
-      onClick={handleLockedBoard}
-      type="button"
-      color="primary"
-      size="sm"
-    >
+    <ButtonPrimary disabled={isLocked} type="button" color="primary" size="sm">
       + add new task
     </ButtonPrimary>
   );
 
   const modalTriggerMobile = (
     <Button
-      onClick={handleLockedBoard}
+      disabled={isLocked}
       className="rounded-full w-[3.5rem] text-3xl pb-4 text-center bg-mainPurple hover:bg-secondaryPurple"
     >
       +

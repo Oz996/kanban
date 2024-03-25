@@ -9,6 +9,7 @@ export default function ButtonPrimary({
   color,
   type,
   onClick,
+  disabled,
 }: ButtonProps) {
   const primary = color === "primary";
   const secondary = color === "secondary";
@@ -16,6 +17,7 @@ export default function ButtonPrimary({
 
   return (
     <Button
+      disabled={disabled}
       onClick={onClick}
       type={type}
       className={classnames({

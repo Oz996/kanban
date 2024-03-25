@@ -53,6 +53,7 @@ export interface ButtonProps {
   color: "primary" | "secondary" | "danger";
   type?: "submit" | "button";
   onClick?: any;
+  disabled?: boolean;
 }
 
 export interface ModalProps {

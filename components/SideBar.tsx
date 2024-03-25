@@ -16,6 +16,8 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import { useFetchBoards } from "@/hooks/useFetchBoards";
 import { useSidebar } from "@/hooks/useSidebar";
 import { Dialog, DialogContent } from "./ui/dialog";
+import { useBoard } from "@/hooks/useBoard";
+import { Lock, LockIcon } from "lucide-react";
 
 interface props {
   mobileBoard?: boolean;
@@ -39,7 +41,8 @@ export default function Sidebar({
   const { data: boards } = useFetchBoards();
 
   const isMobile = useMediaQuery("only screen and (max-width: 768px)");
-  console.log(boards);
+
+  console.log("boards?", boards);
 
   const { showSidebar, setShowSidebar } = useSidebar();
   const { id } = useParams();
@@ -185,7 +188,14 @@ export default function Sidebar({
                         alt=""
                         aria-hidden
                       ></Image>
-                      <h2 className="heading-md truncate">{board.title}</h2>
+                      {board.isLocked ? (
+                        <div className="flex gap-2 items-center">
+                          <h2 className="heading-md truncate">{board.title}</h2>
+                          <LockIcon size={18} />
+                        </div>
+                      ) : (
+                        <h2 className="heading-md truncate">{board.title}</h2>
+                      )}
                     </Link>
                   </li>
                 ))}
