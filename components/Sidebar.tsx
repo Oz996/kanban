@@ -34,7 +34,7 @@ interface props {
   setOpenedByClick?: React.Dispatch<SetStateAction<boolean>>;
 }
 
-export default function SideBar({
+export default function Sidebar({
   mobileBoard,
   setMobileBoard,
   openedByClick,

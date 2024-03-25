@@ -11,7 +11,7 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import { useFetchBoard } from "@/hooks/useFetchBoard";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import SideBar from "@/components/Sidebar";
+import Sidebar from "@/components/Sidebar";
 
 export default function Page({ params }: { params: { id: any } }) {
   const [openedByClick, setOpenedByClick] = useState(false);
@@ -59,7 +59,7 @@ export default function Page({ params }: { params: { id: any } }) {
 
   return (
     <section className="flex gap-1 pt-24 h-screen overflow-x-scroll">
-      <SideBar
+      <Sidebar
         openedByClick={openedByClick}
         closedByClick={closedByClick}
         setOpenedByClick={setOpenedByClick}

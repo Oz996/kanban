@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import { useSidebar } from "@/hooks/useSidebar";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
-import SideBar from "./Sidebar";
+import Sidebar from "./Sidebar";
 
 export default function Header() {
   const [mobileBoard, setMobileBoard] = useState(false);
@@ -102,7 +102,7 @@ export default function Header() {
       </div>
       {/* sidebar */}
       {isMobile && showSidebar && (
-        <SideBar mobileBoard={mobileBoard} setMobileBoard={setMobileBoard} />
+        <Sidebar mobileBoard={mobileBoard} setMobileBoard={setMobileBoard} />
       )}
     </header>
   );
