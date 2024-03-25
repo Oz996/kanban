@@ -18,6 +18,12 @@ import { useSidebar } from "@/hooks/useSidebar";
 import { Dialog, DialogContent } from "./ui/dialog";
 import { useBoard } from "@/hooks/useBoard";
 import { Lock, LockIcon } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
 
 interface props {
   mobileBoard?: boolean;
@@ -191,10 +197,21 @@ export default function Sidebar({
                       {board.isLocked ? (
                         <div className="flex gap-2 items-center">
                           <h2 className="heading-md truncate">{board.title}</h2>
-                          <LockIcon size={18} />
+                          <LockIcon size={16} />
                         </div>
                       ) : (
-                        <h2 className="heading-md truncate">{board.title}</h2>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <h2 className="heading-md truncate">
+                                {board.title}
+                              </h2>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>{board.title}</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
                       )}
                     </Link>
                   </li>
