@@ -33,7 +33,7 @@ export const createTask = async (props: DataProps) => {
   }
 };
 
-export const updateTask = async (props: DataProps) => {
+export const updateTask = async (props: any) => {
   const { subtasks, status, setSubtasks, columnId, data, task } = props;
   try {
     const invalid = invalidInputs("task", subtasks, setSubtasks!);
