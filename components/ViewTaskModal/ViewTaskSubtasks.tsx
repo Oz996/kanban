@@ -3,8 +3,6 @@ import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
 import classNames from "classnames";
 import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { getBaseUrl } from "@/utils/getBaseUrl";
 import { updateSubtask } from "@/services/services";
 import { useBoard } from "@/hooks/useBoard";
 import { errorToast } from "@/utils/errorToast";

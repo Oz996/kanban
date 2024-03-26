@@ -1,9 +1,8 @@
 import {
   postTask,
-  updateTask as updateTaskCall,
-  postSubtask as postSubtaskCall,
   updateTask,
   deleteSubTask,
+  postSubtask,
 } from "@/services/services";
 import { invalidInputs } from "@/utils/invalidInputs";
 import { Subtask, SubtaskInput, Task } from "@/types";
@@ -76,7 +75,7 @@ export const postSubtasks = async (
 
       if (!originalSubtask) {
         console.log("new", newSubtask);
-        await postSubtaskCall(taskId, newSubtask);
+        await postSubtask(taskId, newSubtask);
       }
     }
   } catch (error: any) {
