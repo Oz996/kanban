@@ -20,8 +20,5 @@ export const taskSchema = z.object({
     .string()
     .min(1, { message: "Title is required" })
     .max(431, { message: "Title is too long" }),
-  description: z
-    .string()
-    .min(1, { message: "Description is required" })
-    .max(600, { message: "Description is too long" }),
+  description: z.string().max(600, { message: "Description is too long" }),
 });

@@ -22,6 +22,8 @@ export default function ViewTaskModal({
   const [status, setStatus] = useState("");
   const subtasks: Subtask[] = task!.subtasks;
 
+  console.log("task", task);
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
@@ -33,7 +35,7 @@ export default function ViewTaskModal({
           </DialogTitle>
         </DialogHeader>
         <DialogDescription className="heading-md text-mediumGrey mb-8">
-          {task?.description}
+          {task?.description ? task.description : "No description"}
         </DialogDescription>
         <ViewTaskSubtasks subtasks={subtasks} />
         <div className="flex flex-col gap-2">

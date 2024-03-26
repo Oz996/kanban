@@ -26,7 +26,7 @@ export default function Page() {
       <div className="text-white font-semibold flex flex-col justify-center items-center gap-5">
         <hgroup className="text-center">
           <h1 className="text-3xl">Welcome to Kanban Task Manager</h1>
-          <p className="text-2xl">Sign in</p>
+          <p className="text-2xl mt-3">Sign in</p>
         </hgroup>
         <GoogleAuthButton />
       </div>
