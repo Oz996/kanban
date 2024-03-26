@@ -1,7 +1,11 @@
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { taskSchema } from "@/lib/schema";
-import { createTask, updateTask } from "../../services/taskServices";
+import {
+  createTask,
+  postSubtask,
+  updateTask,
+} from "../../services/taskServices";
 import { successToast } from "@/utils/successToast";
 import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
 import { SetStateAction, useEffect, useState } from "react";
@@ -39,6 +43,7 @@ export default function TaskForm({
   task,
   setOpen,
 }: props) {
+  // States and variables ---------------------------------
   const [status, setStatus] = useState(column?.title);
   const [columnId, setColumnId] = useState(column?.id);
   const [isLoading, setIsLoading] = useState(false);
@@ -56,7 +61,10 @@ export default function TaskForm({
 
   const queryClient = useQueryClient();
   const { board } = useBoard();
+
   const isLocked = board?.isLocked;
+  const originalValues = task?.subtasks;
+  // -----------------------------------------------------
 
   // if we are adding a new task set the default column to the first column of the board
   useEffect(() => {
@@ -125,6 +133,7 @@ export default function TaskForm({
         data,
         task,
       });
+      await postSubtask(task!.id, subtasks, originalValues!);
       if (taskStatus === 200) {
         invalidateBoard();
         successToast("Task", "updated");

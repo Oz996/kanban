@@ -70,3 +70,8 @@ export const updateSubtask = async (id: string, data: any) => {
   const res = await axios.put(getBaseUrl() + `/api/subtask/${id}`, data);
   return res.status;
 };
+
+export const postSubtask = async (id: string, data: any) => {
+  const res = await axios.post(getBaseUrl() + `/api/subtask/${id}`, data);
+  return res.status;
+};

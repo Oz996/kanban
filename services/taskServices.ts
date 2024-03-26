@@ -1,6 +1,10 @@
-import { postTask, updateTask as updateTaskCall } from "@/services/services";
+import {
+  postTask,
+  updateTask as updateTaskCall,
+  postSubtask as postSubtaskCall,
+} from "@/services/services";
 import { invalidInputs } from "@/utils/invalidInputs";
-import { SubtaskInput, Task } from "@/types";
+import { Subtask, SubtaskInput, Task } from "@/types";
 import React, { SetStateAction } from "react";
 import { FieldValues } from "react-hook-form";
 
@@ -48,6 +52,27 @@ export const updateTask = async (props: any) => {
     console.log("payload", taskData);
     const res = await updateTaskCall(task!.id, taskData);
     return res;
+  } catch (error: any) {
+    console.error(error.message);
+  }
+};
+
+export const postSubtask = async (
+  taskId: string,
+  subtasks: SubtaskInput[],
+  originalValues: Subtask[]
+) => {
+  try {
+    for (const newSubtask of subtasks) {
+      const originalSubtask = originalValues!.find(
+        (subtask) => subtask.id === newSubtask.id
+      );
+
+      if (!originalSubtask) {
+        console.log("new", newSubtask);
+        await postSubtaskCall(taskId, newSubtask);
+      }
+    }
   } catch (error: any) {
     console.error(error.message);
   }

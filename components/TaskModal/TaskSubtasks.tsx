@@ -30,6 +30,7 @@ export default function TaskSubtasks({ subtasks, setSubtasks }: props) {
     setSubtasks(newSubtasks);
   };
 
+  console.log("subtasks", subtasks);
   return (
     <>
       <Label htmlFor="subtasks" className="heading-sm capitalize">
