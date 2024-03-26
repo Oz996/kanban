@@ -1,5 +1,4 @@
 import { NextAuthOptions } from "next-auth";
-import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
 export const options: NextAuthOptions = {
@@ -11,7 +10,3 @@ export const options: NextAuthOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
 };
-
-export const handler = NextAuth(options);
-
-export { handler as GET, handler as POST };
