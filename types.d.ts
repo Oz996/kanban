@@ -63,6 +63,6 @@ export interface ModalProps {
   task?: Task;
   column?: Column;
   columns?: Column[];
-  trigger: React.ReactNode;
+  trigger: ReactNode;
 }
 // ------------

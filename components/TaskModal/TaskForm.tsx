@@ -13,6 +13,7 @@ import TaskDescription from "./TaskDescription";
 import TaskSubtasks from "./TaskSubtasks";
 import TaskSelect from "./TaskSelect";
 import { useBoard } from "@/hooks/useBoard";
+import { Loader2 } from "lucide-react";
 
 const initState = {
   description: "",
@@ -40,6 +41,7 @@ export default function TaskForm({
 }: props) {
   const [status, setStatus] = useState(column?.title);
   const [columnId, setColumnId] = useState(column?.id);
+  const [isLoading, setIsLoading] = useState(false);
   const [subtasks, setSubtasks] = useState<SubtaskInput[]>([
     {
       description: "",
@@ -92,31 +94,45 @@ export default function TaskForm({
   };
 
   const handlePostTask = async (data: FieldValues) => {
-    const taskStatus = await createTask({
-      subtasks,
-      setSubtasks,
-      status,
-      columnId,
-      data,
-    });
-    if (taskStatus === 201) {
-      invalidateBoard();
-      successToast("Task", "created");
+    try {
+      setIsLoading(true);
+      const taskStatus = await createTask({
+        subtasks,
+        setSubtasks,
+        status,
+        columnId,
+        data,
+      });
+      if (taskStatus === 201) {
+        invalidateBoard();
+        successToast("Task", "created");
+      }
+    } catch (error: any) {
+      console.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleUpdateTask = async (data: FieldValues) => {
-    const taskStatus = await updateTask({
-      subtasks,
-      status,
-      setSubtasks,
-      columnId,
-      data,
-      task,
-    });
-    if (taskStatus === 200) {
-      invalidateBoard();
-      successToast("Task", "updated");
+    try {
+      setIsLoading(true);
+      const taskStatus = await updateTask({
+        subtasks,
+        status,
+        setSubtasks,
+        columnId,
+        data,
+        task,
+      });
+      if (taskStatus === 200) {
+        invalidateBoard();
+        successToast("Task", "updated");
+      }
+    } catch (error: any) {
+      console.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -161,11 +177,12 @@ export default function TaskForm({
 
       <div className="w-full flex flex-col">
         <ButtonPrimary
-          disabled={isLocked}
+          disabled={isLocked || isLoading}
           type="submit"
           size="sm"
           color="primary"
         >
+          {isLoading && <Loader2 className="mr-1 size-5 animate-spin" />}
           {addMode ? "create task" : "edit task"}
         </ButtonPrimary>
       </div>

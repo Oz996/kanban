@@ -16,6 +16,7 @@ import { useBoard } from "@/hooks/useBoard";
 import { deleteBoard, deleteTask } from "@/services/services";
 import { Task } from "@/types";
 import { successToast } from "@/utils/successToast";
+import { Loader2 } from "lucide-react";
 
 interface props {
   type: "board" | "column" | "task";
@@ -26,6 +27,7 @@ interface props {
 export default function DeleteModal({ type, trigger, task }: props) {
   const { board } = useBoard();
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const queryClient = useQueryClient();
   const { id } = useParams();
@@ -39,21 +41,35 @@ export default function DeleteModal({ type, trigger, task }: props) {
   const boardType = type === "board";
 
   const handleDeleteBoard = async (id: string) => {
-    await deleteBoard(id);
-    invalidateBoard();
-    successToast("Board", "deleted");
+    try {
+      setIsLoading(true);
+      await deleteBoard(id);
+      invalidateBoard();
+      successToast("Board", "deleted");
+    } catch (error: any) {
+      console.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // handling task deletion
   const handlDeleteTask = async (id: string) => {
-    await deleteTask(id);
-    invalidateBoard();
-    successToast("Task", "deleted");
+    try {
+      setIsLoading(true);
+      await deleteTask(id);
+      invalidateBoard();
+      successToast("Task", "deleted");
+    } catch (error: any) {
+      console.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleDeletion = (id: string) => {
+  const handleDeletion = async (id: string) => {
     if (boardType) {
-      handleDeleteBoard(id);
+      await handleDeleteBoard(id);
     } else {
       handlDeleteTask(task!.id);
     }
@@ -73,11 +89,13 @@ export default function DeleteModal({ type, trigger, task }: props) {
         <DialogHeader className="body-lg">{description}</DialogHeader>
         <DialogFooter className="flex flex-col gap-4 justify-between md:flex-row md:gap-0">
           <ButtonPrimary
+            disabled={isLoading}
             size="sm"
             color="danger"
             className="w-full"
             onClick={() => handleDeletion(id as string)}
           >
+            {isLoading && <Loader2 className="mr-1 size-5 animate-spin" />}
             delete
           </ButtonPrimary>
           <ButtonPrimary
