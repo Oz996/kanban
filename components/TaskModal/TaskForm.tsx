@@ -3,8 +3,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { taskSchema } from "@/lib/schema";
 import {
   createTask,
-  postSubtask,
-  updateTask,
+  deleteSubTasks,
+  postSubtasks,
+  updateTasks,
 } from "../../services/taskServices";
 import { successToast } from "@/utils/successToast";
 import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
@@ -64,6 +65,8 @@ export default function TaskForm({
 
   const isLocked = board?.isLocked;
   const originalValues = task?.subtasks;
+
+  console.log("originalValues", originalValues);
   // -----------------------------------------------------
 
   // if we are adding a new task set the default column to the first column of the board
@@ -125,7 +128,7 @@ export default function TaskForm({
   const handleUpdateTask = async (data: FieldValues) => {
     try {
       setIsLoading(true);
-      const taskStatus = await updateTask({
+      const taskStatus = await updateTasks({
         subtasks,
         status,
         setSubtasks,
@@ -133,7 +136,8 @@ export default function TaskForm({
         data,
         task,
       });
-      await postSubtask(task!.id, subtasks, originalValues!);
+      await deleteSubTasks(subtasks, originalValues!, setSubtasks);
+      await postSubtasks(task!.id, subtasks, originalValues!, setSubtasks);
       if (taskStatus === 200) {
         invalidateBoard();
         successToast("Task", "updated");

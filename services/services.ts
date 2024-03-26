@@ -75,3 +75,8 @@ export const postSubtask = async (id: string, data: any) => {
   const res = await axios.post(getBaseUrl() + `/api/subtask/${id}`, data);
   return res.status;
 };
+
+export const deleteSubTask = async (id: string) => {
+  const res = await axios.delete(getBaseUrl() + `/api/subtask/${id}`);
+  return res.status;
+};

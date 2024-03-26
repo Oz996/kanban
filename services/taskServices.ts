@@ -2,6 +2,8 @@ import {
   postTask,
   updateTask as updateTaskCall,
   postSubtask as postSubtaskCall,
+  updateTask,
+  deleteSubTask,
 } from "@/services/services";
 import { invalidInputs } from "@/utils/invalidInputs";
 import { Subtask, SubtaskInput, Task } from "@/types";
@@ -10,7 +12,7 @@ import { FieldValues } from "react-hook-form";
 
 interface DataProps {
   subtasks: SubtaskInput[];
-  setSubtasks?: React.Dispatch<SetStateAction<SubtaskInput[]>>;
+  setSubtasks: React.Dispatch<SetStateAction<SubtaskInput[]>>;
   status: string | undefined;
   columnId: string | undefined;
   data?: FieldValues;
@@ -20,7 +22,7 @@ interface DataProps {
 export const createTask = async (props: DataProps) => {
   const { subtasks, setSubtasks, status, columnId, data } = props;
   try {
-    const invalid = invalidInputs("task", subtasks, setSubtasks!);
+    const invalid = invalidInputs("task", subtasks, setSubtasks);
     if (invalid) return;
 
     const dataObject = {
@@ -37,10 +39,10 @@ export const createTask = async (props: DataProps) => {
   }
 };
 
-export const updateTask = async (props: any) => {
+export const updateTasks = async (props: any) => {
   const { subtasks, status, setSubtasks, columnId, data, task } = props;
   try {
-    const invalid = invalidInputs("task", subtasks, setSubtasks!);
+    const invalid = invalidInputs("task", subtasks, setSubtasks);
     if (invalid) return;
 
     const taskData = {
@@ -50,19 +52,23 @@ export const updateTask = async (props: any) => {
       columnId,
     };
     console.log("payload", taskData);
-    const res = await updateTaskCall(task!.id, taskData);
+    const res = await updateTask(task!.id, taskData);
     return res;
   } catch (error: any) {
     console.error(error.message);
   }
 };
 
-export const postSubtask = async (
+export const postSubtasks = async (
   taskId: string,
   subtasks: SubtaskInput[],
-  originalValues: Subtask[]
+  originalValues: Subtask[],
+  setSubtasks: React.Dispatch<SetStateAction<SubtaskInput[]>>
 ) => {
   try {
+    const invalid = invalidInputs("task", subtasks, setSubtasks);
+    if (invalid) return;
+
     for (const newSubtask of subtasks) {
       const originalSubtask = originalValues!.find(
         (subtask) => subtask.id === newSubtask.id
@@ -71,6 +77,30 @@ export const postSubtask = async (
       if (!originalSubtask) {
         console.log("new", newSubtask);
         await postSubtaskCall(taskId, newSubtask);
+      }
+    }
+  } catch (error: any) {
+    console.error(error.message);
+  }
+};
+
+export const deleteSubTasks = async (
+  subtasks: SubtaskInput[],
+  originalValues: Subtask[],
+  setSubtasks: React.Dispatch<SetStateAction<SubtaskInput[]>>
+) => {
+  try {
+    const invalid = invalidInputs("task", subtasks, setSubtasks);
+    if (invalid) return;
+
+    for (const originalSubtask of originalValues!) {
+      const existingSubtask = subtasks.find(
+        (subtask) => subtask.id === originalSubtask.id
+      );
+
+      if (!existingSubtask) {
+        console.log("delete", originalSubtask);
+        await deleteSubTask(originalSubtask.id);
       }
     }
   } catch (error: any) {

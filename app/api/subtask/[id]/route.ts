@@ -55,3 +55,24 @@ export async function PUT(
     );
   }
 }
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const deletedSubtask = await prisma.subtask.delete({
+      where: {
+        id: params.id,
+      },
+    });
+
+    return NextResponse.json({ message: "Subtask deleted" }, { status: 200 });
+  } catch (error: any) {
+    console.error(error.message);
+    return NextResponse.json(
+      { message: "Failed to delete subtask" },
+      { status: 500 }
+    );
+  }
+}
