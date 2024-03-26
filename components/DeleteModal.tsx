@@ -9,7 +9,7 @@ import {
   DialogFooter,
   DialogTitle,
 } from "./ui/dialog";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import ButtonPrimary from "./ButtonPrimary";
 import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
 import { useBoard } from "@/hooks/useBoard";
@@ -31,6 +31,7 @@ export default function DeleteModal({ type, trigger, task }: props) {
 
   const queryClient = useQueryClient();
   const { id } = useParams();
+  const router = useRouter();
 
   const invalidateBoard = () => {
     queryClient.invalidateQueries(["board"] as InvalidateQueryFilters);
@@ -46,6 +47,7 @@ export default function DeleteModal({ type, trigger, task }: props) {
       await deleteBoard(id);
       invalidateBoard();
       successToast("Board", "deleted");
+      router.push("/");
     } catch (error: any) {
       console.error(error.message);
     } finally {

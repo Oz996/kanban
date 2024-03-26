@@ -197,7 +197,7 @@ export default function Sidebar({
                       {board.isLocked ? (
                         <div className="flex gap-2 items-center">
                           <h2 className="heading-md truncate">{board.title}</h2>
-                          <LockIcon size={16} />
+                          <LockIcon size={15} />
                         </div>
                       ) : (
                         <TooltipProvider>
