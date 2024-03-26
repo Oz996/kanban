@@ -10,9 +10,9 @@ import {
 import { Column, Task } from "@/types";
 import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
 import { successToast } from "@/utils/successToast";
-import { updateTask } from "../../services/taskServices";
 import { useBoard } from "@/hooks/useBoard";
 import { errorToast } from "@/utils/errorToast";
+import { updateTasks } from "@/services/taskServices";
 
 interface props {
   task: Task;
@@ -46,7 +46,7 @@ export default function ViewTaskSelect({
         task,
       };
       console.log("payload", taskData);
-      const taskStatus = await updateTask(taskData);
+      const taskStatus = await updateTasks(taskData);
 
       if (taskStatus === 200) {
         queryClient.invalidateQueries(["board"] as InvalidateQueryFilters);
