@@ -19,6 +19,7 @@ import { invalidateQuery } from "@/utils/invalidateQuery";
 import BoardTitleInput from "./BoardTitleInput";
 import BoardColumns from "./BoardColumns";
 import { successToast } from "@/utils/successToast";
+import { Loader2 } from "lucide-react";
 
 interface props {
   type: "add" | "update";
@@ -35,6 +36,7 @@ export type Inputs = z.infer<typeof boardSchema>;
 
 export default function BoardForm({ type, open, setOpen }: props) {
   // States and variables ---------------------------------
+  const [isLoading, setisLoading] = useState(false);
   const [columns, setColumns] = useState<ColumnInput[]>([
     {
       title: "",
@@ -77,29 +79,43 @@ export default function BoardForm({ type, open, setOpen }: props) {
   console.log("column form", columns);
 
   const handleCreateBoard = async (data: Inputs) => {
-    const status = await createBoard(columns, data, setColumns);
-    if (status === 201) {
-      invalidateQuery(queryClient, "boards");
-      setOpen(false);
-      successToast("Board", "created");
+    try {
+      setisLoading(true);
+      const status = await createBoard(columns, data, setColumns);
+      if (status === 201) {
+        invalidateQuery(queryClient, "boards");
+        setOpen(false);
+        successToast("Board", "created");
+      }
+    } catch (error: any) {
+      console.error(error.message);
+    } finally {
+      setisLoading(false);
     }
   };
 
   const handleUpdateBoard = async (data: Inputs) => {
-    const { title } = data;
-    if (boardTitle !== title) {
-      await updateBoardTitle(id as string, data);
+    try {
+      setisLoading(true);
+      const { title } = data;
+      if (boardTitle !== title) {
+        await updateBoardTitle(id as string, data);
+      }
+      await updateColumns(id as string, columns, originalValues!, setColumns);
+      await deleteColumns(columns, originalValues!, setColumns);
+      await addColumns(id as string, columns, originalValues!, setColumns);
+
+      const columnErrors = Object.values(columns).some((value) => value.error);
+      if (columnErrors) return;
+
+      invalidateQuery(queryClient, "boards");
+      setOpen(false);
+      successToast("Board", "updated");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setisLoading(false);
     }
-    await updateColumns(id as string, columns, originalValues!, setColumns);
-    await deleteColumns(columns, originalValues!, setColumns);
-    await addColumns(id as string, columns, originalValues!, setColumns);
-
-    const columnErrors = Object.values(columns).some((value) => value.error);
-    if (columnErrors) return;
-
-    invalidateQuery(queryClient, "boards");
-    setOpen(false);
-    successToast("Board", "updated");
   };
 
   const handleCloseModal = () => {
@@ -133,11 +149,12 @@ export default function BoardForm({ type, open, setOpen }: props) {
       <BoardColumns columns={columns} setColumns={setColumns} />
 
       <ButtonPrimary
-        disabled={isLocked && updateMode}
+        disabled={(isLocked && updateMode) || isLoading}
         type="submit"
         size="sm"
         color="primary"
       >
+        {isLoading && <Loader2 className="mr-1 size-5 animate-spin" />}
         {addMode ? "create new board" : updateMode ? "update board" : ""}
       </ButtonPrimary>
     </form>

@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 // model types
 export interface IObject {
   createdAt: string;
@@ -47,7 +49,7 @@ export interface SubtaskInput {
 
 // element props
 export interface ButtonProps {
-  children: string;
+  children: string | ReactNode;
   className?: string;
   size: "sm" | "lg";
   color: "primary" | "secondary" | "danger";
