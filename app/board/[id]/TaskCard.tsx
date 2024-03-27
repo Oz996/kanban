@@ -18,7 +18,7 @@ export default function TaskCard({ tasks, columns, column }: props) {
         const taskCard = (
           <Card
             key={task.id}
-            className="bg-darkGrey w-full cursor-pointer hover:opacity-60 duration-200 overflow-hidden shadow"
+            className="bg-darkGrey w-full cursor-pointer hover:opacity-60 duration-200 overflow-hidden shadow shrink-0"
           >
             <CardHeader>
               <CardTitle className="heading-md text-white line-clamp-3 w-full">
