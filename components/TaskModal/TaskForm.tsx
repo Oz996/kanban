@@ -8,7 +8,7 @@ import {
   updateTasks,
 } from "../../services/taskServices";
 import { successToast } from "@/utils/successToast";
-import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { SetStateAction, useEffect, useState } from "react";
 import ButtonPrimary from "../ButtonPrimary";
 import { Column, SubtaskInput, Task } from "@/types";
@@ -19,6 +19,7 @@ import TaskSubtasks from "./TaskSubtasks";
 import TaskSelect from "./TaskSelect";
 import { useBoard } from "@/hooks/useBoard";
 import { Loader2 } from "lucide-react";
+import { invalidateQuery } from "@/utils/invalidateQuery";
 
 const initState = {
   description: "",
@@ -100,7 +101,7 @@ export default function TaskForm({
   });
 
   const invalidateBoard = () => {
-    queryClient.invalidateQueries(["board"] as InvalidateQueryFilters);
+    invalidateQuery(queryClient, "board");
     setOpen(false);
   };
 

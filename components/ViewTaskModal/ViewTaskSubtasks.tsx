@@ -2,12 +2,13 @@ import { Subtask } from "@/types";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
 import classNames from "classnames";
-import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { updateSubtask } from "@/services/services";
 import { useBoard } from "@/hooks/useBoard";
 import { errorToast } from "@/utils/errorToast";
 import { useState } from "react";
 import { Loader } from "lucide-react";
+import { invalidateQuery } from "@/utils/invalidateQuery";
 
 interface props {
   subtasks: Subtask[];
@@ -45,7 +46,7 @@ export default function ViewTaskSubtasks({ subtasks }: props) {
       const status = await updateSubtask(subtask.id, data);
 
       if (status === 200) {
-        queryClient.invalidateQueries(["board"] as InvalidateQueryFilters);
+        invalidateQuery(queryClient, "board");
       }
     } catch (error: any) {
       console.error(error.message);

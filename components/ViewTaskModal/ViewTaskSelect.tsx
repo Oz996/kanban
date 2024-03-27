@@ -8,12 +8,13 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Column, Task } from "@/types";
-import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { successToast } from "@/utils/successToast";
 import { useBoard } from "@/hooks/useBoard";
 import { errorToast } from "@/utils/errorToast";
 import { updateTasks } from "@/services/taskServices";
 import { Loader2 } from "lucide-react";
+import { invalidateQuery } from "@/utils/invalidateQuery";
 
 interface props {
   task: Task;
@@ -54,7 +55,7 @@ export default function ViewTaskSelect({
       const taskStatus = await updateTasks(taskData);
 
       if (taskStatus === 200) {
-        queryClient.invalidateQueries(["board"] as InvalidateQueryFilters);
+        invalidateQuery(queryClient, "board");
         successToast("Task", "updated");
       }
     } catch (error: any) {

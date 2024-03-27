@@ -17,6 +17,7 @@ import { deleteBoard, deleteTask } from "@/services/services";
 import { Task } from "@/types";
 import { successToast } from "@/utils/successToast";
 import { Loader2 } from "lucide-react";
+import { invalidateQuery } from "@/utils/invalidateQuery";
 
 interface props {
   type: "board" | "column" | "task";
@@ -34,7 +35,7 @@ export default function DeleteModal({ type, trigger, task }: props) {
   const router = useRouter();
 
   const invalidateBoard = () => {
-    queryClient.invalidateQueries(["board"] as InvalidateQueryFilters);
+    invalidateQuery(queryClient, "board");
     setOpen(false);
   };
 
