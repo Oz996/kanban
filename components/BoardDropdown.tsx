@@ -15,9 +15,7 @@ import { errorToast } from "@/utils/errorToast";
 interface props {
   isLocked: boolean | undefined;
 }
-const handleDisabledClick = () => {
-  errorToast("edit");
-};
+
 export default function BoardDropdown({ isLocked }: props) {
   return (
     <DropdownMenu>
@@ -41,7 +39,7 @@ export default function BoardDropdown({ isLocked }: props) {
           >
             {isLocked ? (
               <span
-                onClick={handleDisabledClick}
+                onClick={() => errorToast("edit")}
                 className="pl-3 py-0 text-md capitalize text-mediumGrey opacity-60"
               >
                 edit board
@@ -60,7 +58,7 @@ export default function BoardDropdown({ isLocked }: props) {
           <DropdownMenuItem asChild>
             {isLocked ? (
               <span
-                onClick={handleDisabledClick}
+                onClick={() => errorToast("delete")}
                 className="pl-3 py-0 text-md  capitalize text-danger opacity-40"
               >
                 delete board

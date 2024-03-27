@@ -6,12 +6,19 @@ import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
 import { updateSubtask } from "@/services/services";
 import { useBoard } from "@/hooks/useBoard";
 import { errorToast } from "@/utils/errorToast";
+import { useState } from "react";
+import { Loader } from "lucide-react";
 
 interface props {
   subtasks: Subtask[];
 }
 
+const initState = {
+  id: "",
+  loading: false,
+};
 export default function ViewTaskSubtasks({ subtasks }: props) {
+  const [isLoading, setIsLoading] = useState(initState);
   const queryClient = useQueryClient();
   const { board } = useBoard();
 
@@ -21,6 +28,10 @@ export default function ViewTaskSubtasks({ subtasks }: props) {
   const handleSubtaskCompleted = async (subtask: Subtask) => {
     try {
       if (isLocked) return errorToast("edit");
+      setIsLoading({
+        id: subtask.id,
+        loading: true,
+      });
       // we check if completed value is falsy or truthy and set it to the opposite
       const newCompletedStatus = !subtask.completed;
       const data = {
@@ -34,6 +45,8 @@ export default function ViewTaskSubtasks({ subtasks }: props) {
       }
     } catch (error: any) {
       console.error(error.message);
+    } finally {
+      setIsLoading(initState);
     }
   };
 
@@ -45,7 +58,11 @@ export default function ViewTaskSubtasks({ subtasks }: props) {
       {subtasks.map((subtask) => (
         <div
           key={subtask.id}
-          className="bg-veryDarkGrey p-3 rounded flex gap-3 items-center cursor-pointer hover:bg-mainPurple hover:bg-opacity-60 duration-200"
+          className={classNames({
+            "relative bg-veryDarkGrey p-3 rounded flex gap-3 items-center cursor-pointer hover:bg-mainPurple hover:bg-opacity-60 duration-200":
+              true,
+            "opacity-60": isLoading.id === subtask.id,
+          })}
           onClick={() => handleSubtaskCompleted(subtask)}
         >
           <Checkbox checked={subtask.completed} id={subtask.id} />
@@ -58,6 +75,9 @@ export default function ViewTaskSubtasks({ subtasks }: props) {
           >
             {subtask.description}
           </Label>
+          {isLoading.id === subtask.id && (
+            <Loader className="animate-spin absolute right-[1rem] size-5" />
+          )}
         </div>
       ))}
     </div>
