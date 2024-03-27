@@ -3,7 +3,7 @@ import { boardSchema } from "@/lib/schema";
 import { ColumnInput } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { SetStateAction, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { set, z } from "zod";
@@ -55,6 +55,7 @@ export default function BoardForm({ type, open, setOpen }: props) {
 
   const { board } = useBoard();
   const { id } = useParams();
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   const addMode = type === "add";
@@ -81,11 +82,13 @@ export default function BoardForm({ type, open, setOpen }: props) {
   const handleCreateBoard = async (data: Inputs) => {
     try {
       setisLoading(true);
-      const status = await createBoard(columns, data, setColumns);
-      if (status === 201) {
+      const res = await createBoard(columns, data, setColumns);
+      if (res?.status === 201) {
+        const newBoardId = res.data.id;
         invalidateQuery(queryClient, "boards");
         setOpen(false);
         successToast("Board", "created");
+        router.push(newBoardId);
       }
     } catch (error: any) {
       console.error(error.message);

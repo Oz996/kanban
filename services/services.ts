@@ -18,7 +18,7 @@ export const getBoard = async (id: string) => {
 
 export const postBoard = async (data: Inputs) => {
   const res = await axios.post(getBaseUrl() + `/api/boards`, data);
-  return res.status;
+  return res;
 };
 
 export const updateBoard = async (id: string, data: Inputs) => {
