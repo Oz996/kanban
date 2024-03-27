@@ -1,4 +1,4 @@
-import React, { SetStateAction } from "react";
+import React, { SetStateAction, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -13,6 +13,7 @@ import { successToast } from "@/utils/successToast";
 import { useBoard } from "@/hooks/useBoard";
 import { errorToast } from "@/utils/errorToast";
 import { updateTasks } from "@/services/taskServices";
+import { Loader2 } from "lucide-react";
 
 interface props {
   task: Task;
@@ -29,12 +30,16 @@ export default function ViewTaskSelect({
   columns,
   setStatus,
 }: props) {
-  const queryClient = useQueryClient();
+  const [isLoading, setIsLoading] = useState(false);
   const { board } = useBoard();
+
+  const queryClient = useQueryClient();
   const isLocked = board?.isLocked;
 
   const handleChangeTaskColumn = async (id: string) => {
+    if (isLoading) return;
     try {
+      setIsLoading(true);
       const { title, description, status, subtasks } = task!;
 
       const taskData = {
@@ -54,6 +59,8 @@ export default function ViewTaskSelect({
       }
     } catch (error: any) {
       console.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -68,9 +75,12 @@ export default function ViewTaskSelect({
   };
 
   return (
-    <Select value={status} onValueChange={handleChange}>
-      <SelectTrigger className="col-span-3 bg-darkGrey input">
+    <Select disabled={isLoading} value={status} onValueChange={handleChange}>
+      <SelectTrigger className="col-span-3 bg-darkGrey input relative">
         <SelectValue placeholder={column.title} />
+        {isLoading && (
+          <Loader2 className="size-5 animate-spin absolute right-[2rem]" />
+        )}
       </SelectTrigger>
       <SelectContent className="bg-veryDarkGrey input h-full text-white">
         <SelectGroup>
