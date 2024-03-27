@@ -100,8 +100,8 @@ export default function TaskForm({
     resolver: zodResolver(taskSchema),
   });
 
-  const invalidateBoard = () => {
-    invalidateQuery(queryClient, "board");
+  const invalidateBoard = async () => {
+    await invalidateQuery(queryClient, "board");
     setOpen(false);
   };
 
@@ -116,7 +116,7 @@ export default function TaskForm({
         data,
       });
       if (res?.status === 201) {
-        invalidateBoard();
+        await invalidateBoard();
         successToast("Task", "created");
       }
     } catch (error: any) {
@@ -140,7 +140,7 @@ export default function TaskForm({
       await deleteSubTasks(subtasks, originalValues!, setSubtasks);
       await postSubtasks(task!.id, subtasks, originalValues!, setSubtasks);
       if (res?.status === 200) {
-        invalidateBoard();
+        await invalidateBoard();
         successToast("Task", "updated");
       }
     } catch (error: any) {

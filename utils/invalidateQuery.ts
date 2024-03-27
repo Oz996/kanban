@@ -1,8 +1,8 @@
 import { InvalidateQueryFilters } from "@tanstack/react-query";
 
-export const invalidateQuery = (
+export const invalidateQuery = async (
   queryClient: any,
   query: "boards" | "board"
 ) => {
-  queryClient.invalidateQueries([query] as InvalidateQueryFilters);
+  return queryClient.invalidateQueries([query] as InvalidateQueryFilters);
 };

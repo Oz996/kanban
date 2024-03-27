@@ -34,8 +34,8 @@ export default function DeleteModal({ type, trigger, task }: props) {
   const { id } = useParams();
   const router = useRouter();
 
-  const invalidateBoard = () => {
-    invalidateQuery(queryClient, "board");
+  const invalidateBoard = async () => {
+    await invalidateQuery(queryClient, "board");
     setOpen(false);
   };
 
@@ -46,7 +46,7 @@ export default function DeleteModal({ type, trigger, task }: props) {
     try {
       setIsLoading(true);
       await deleteBoard(id);
-      invalidateBoard();
+      await invalidateBoard();
       successToast("Board", "deleted");
       router.push("/");
     } catch (error: any) {
@@ -61,7 +61,7 @@ export default function DeleteModal({ type, trigger, task }: props) {
     try {
       setIsLoading(true);
       await deleteTask(id);
-      invalidateBoard();
+      await invalidateBoard();
       successToast("Task", "deleted");
     } catch (error: any) {
       console.error(error.message);

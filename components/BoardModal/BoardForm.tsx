@@ -85,7 +85,7 @@ export default function BoardForm({ type, open, setOpen }: props) {
       const res = await createBoard(columns, data, setColumns);
       if (res?.status === 201) {
         const newBoardId = res.data.id;
-        invalidateQuery(queryClient, "boards");
+        await invalidateQuery(queryClient, "boards");
         setOpen(false);
         successToast("Board", "created");
         router.push(newBoardId);
@@ -111,7 +111,7 @@ export default function BoardForm({ type, open, setOpen }: props) {
       const columnErrors = Object.values(columns).some((value) => value.error);
       if (columnErrors) return;
 
-      invalidateQuery(queryClient, "boards");
+      await invalidateQuery(queryClient, "boards");
       setOpen(false);
       successToast("Board", "updated");
     } catch (error) {

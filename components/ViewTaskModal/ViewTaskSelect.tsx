@@ -55,7 +55,7 @@ export default function ViewTaskSelect({
       const res = await updateTasks(taskData);
 
       if (res?.status === 200) {
-        invalidateQuery(queryClient, "board");
+        await invalidateQuery(queryClient, "board");
         successToast("Task", "updated");
       }
     } catch (error: any) {

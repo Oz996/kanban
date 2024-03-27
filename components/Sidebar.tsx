@@ -6,7 +6,7 @@ import eyeOpen from "@/assets/icon-show-sidebar.svg";
 import eyeClosed from "@/assets/icon-hide-sidebar.svg";
 import boardIcon from "@/assets/icon-board.svg";
 import boardIconWhite from "@/assets/icon-board-white.svg";
-import React, { SetStateAction, useEffect, useState } from "react";
+import React, { SetStateAction, useEffect } from "react";
 import { Board } from "@/types";
 import { useParams } from "next/navigation";
 import BoardModal from "./BoardModal/BoardModal";
@@ -16,8 +16,7 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import { useFetchBoards } from "@/hooks/useFetchBoards";
 import { useSidebar } from "@/hooks/useSidebar";
 import { Dialog, DialogContent } from "./ui/dialog";
-import { useBoard } from "@/hooks/useBoard";
-import { Lock, LockIcon } from "lucide-react";
+import { LockIcon } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
