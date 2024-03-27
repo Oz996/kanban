@@ -23,60 +23,60 @@ export const postBoard = async (data: Inputs) => {
 
 export const updateBoard = async (id: string, data: Inputs) => {
   const res = await axios.put(getBaseUrl() + `/api/board/${id}`, data);
-  return res.status;
+  return res;
 };
 
 export const deleteBoard = async (id: string) => {
   const res = await axios.delete(getBaseUrl() + `/api/board/${id}`);
-  return res.status;
+  return res;
 };
 
 // column services
 export const postColumn = async (id: string, data: ColumnInput) => {
   const res = await axios.post(getBaseUrl() + `/api/column/${id}`, data);
-  return res.status;
+  return res;
 };
 
 export const updateColumn = async (id: string, data: ColumnInput) => {
   const res = await axios.put(getBaseUrl() + `/api/column/${id}`, data);
-  return res.status;
+  return res;
 };
 
 export const deleteColumn = async (id: string) => {
   const res = await axios.delete(getBaseUrl() + `/api/column/${id}`);
-  return res.status;
+  return res;
 };
 
 // task services
 
 export const postTask = async (data: any) => {
   const res = await axios.post(getBaseUrl() + `/api/task/`, data);
-  return res.status;
+  return res;
 };
 
 export const updateTask = async (id: string, data: any) => {
   const res = await axios.put(getBaseUrl() + `/api/task/${id}`, data);
-  return res.status;
+  return res;
 };
 
 export const deleteTask = async (id: string) => {
   const res = await axios.delete(getBaseUrl() + `/api/task/${id}`);
-  return res.status;
+  return res;
 };
 
 //subtask services
 
 export const updateSubtask = async (id: string, data: any) => {
   const res = await axios.put(getBaseUrl() + `/api/subtask/${id}`, data);
-  return res.status;
+  return res;
 };
 
 export const postSubtask = async (id: string, data: any) => {
   const res = await axios.post(getBaseUrl() + `/api/subtask/${id}`, data);
-  return res.status;
+  return res;
 };
 
 export const deleteSubTask = async (id: string) => {
   const res = await axios.delete(getBaseUrl() + `/api/subtask/${id}`);
-  return res.status;
+  return res;
 };

@@ -11,7 +11,7 @@ import {
 } from "./ui/dialog";
 import { useParams, useRouter } from "next/navigation";
 import ButtonPrimary from "./ButtonPrimary";
-import { InvalidateQueryFilters, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { useBoard } from "@/hooks/useBoard";
 import { deleteBoard, deleteTask } from "@/services/services";
 import { Task } from "@/types";

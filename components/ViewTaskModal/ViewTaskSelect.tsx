@@ -52,9 +52,9 @@ export default function ViewTaskSelect({
         task,
       };
       console.log("payload", taskData);
-      const taskStatus = await updateTasks(taskData);
+      const res = await updateTasks(taskData);
 
-      if (taskStatus === 200) {
+      if (res?.status === 200) {
         invalidateQuery(queryClient, "board");
         successToast("Task", "updated");
       }

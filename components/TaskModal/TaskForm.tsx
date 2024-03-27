@@ -108,14 +108,14 @@ export default function TaskForm({
   const handlePostTask = async (data: FieldValues) => {
     try {
       setIsLoading(true);
-      const taskStatus = await createTask({
+      const res = await createTask({
         subtasks,
         setSubtasks,
         status,
         columnId,
         data,
       });
-      if (taskStatus === 201) {
+      if (res?.status === 201) {
         invalidateBoard();
         successToast("Task", "created");
       }
@@ -129,7 +129,7 @@ export default function TaskForm({
   const handleUpdateTask = async (data: FieldValues) => {
     try {
       setIsLoading(true);
-      const taskStatus = await updateTasks({
+      const res = await updateTasks({
         subtasks,
         status,
         setSubtasks,
@@ -139,7 +139,7 @@ export default function TaskForm({
       });
       await deleteSubTasks(subtasks, originalValues!, setSubtasks);
       await postSubtasks(task!.id, subtasks, originalValues!, setSubtasks);
-      if (taskStatus === 200) {
+      if (res?.status === 200) {
         invalidateBoard();
         successToast("Task", "updated");
       }
