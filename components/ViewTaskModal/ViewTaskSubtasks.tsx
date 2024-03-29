@@ -30,7 +30,8 @@ export default function ViewTaskSubtasks({ subtasks }: props) {
 
   const handleSubtaskCompleted = async (subtask: Subtask) => {
     if (isLocked) return errorToast("edit");
-    if (isLoading.loading) return;
+    const { id, loading } = isLoading;
+    if (id === subtask.id && loading) return;
     try {
       console.log("ran");
       setIsLoading({
