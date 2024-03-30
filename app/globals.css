@@ -109,9 +109,9 @@
   /* inputs */
 
   .input {
-    @apply h-[2.5rem] rounded bg-darkGrey border border-inputBorder outline-none focus-within:border-mainPurple duration-200;
+    @apply h-[2.5rem] rounded bg-grey-dark border border-input_border outline-none focus-within:border-purple-medium duration-200;
   }
   .text-area {
-    @apply rounded bg-darkGrey border border-lightGrey outline-none focus-within:border-mainPurple duration-200;
+    @apply rounded bg-grey-dark border border-grey-light outline-none focus-within:border-purple-medium duration-200;
   }
 }

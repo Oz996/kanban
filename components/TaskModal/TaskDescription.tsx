@@ -31,13 +31,13 @@ export default function TaskDescription({
             : ""
         }
         className={classNames({
-          "col-span-3 bg-darkGrey input relative resize-none h-[7rem]": true,
-          "border-danger focus-within:border-danger":
+          "col-span-3 bg-grey-dark input relative resize-none h-[7rem]": true,
+          "border-danger-medium focus-within:border-danger-medium":
             errors?.description?.message,
         })}
       />
       {errors?.description?.message && (
-        <p className="body-lg text-danger absolute right-12 top-[18rem]">
+        <p className="body-lg text-danger-medium absolute right-12 top-[18rem]">
           {errors.description.message}
         </p>
       )}

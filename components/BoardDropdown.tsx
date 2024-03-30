@@ -20,7 +20,7 @@ export default function BoardDropdown({ isLocked }: props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="flex items-center justify-center w-6 h-9 rounded-full group bg-transparent hover:bg-veryDarkGrey duration-200 cursor-pointer">
+        <div className="flex items-center justify-center w-6 h-9 rounded-full group bg-transparent hover:bg-grey-darker duration-200 cursor-pointer">
           <Image
             className="group-hover:opacity-60 duration-200"
             width={5}
@@ -30,17 +30,17 @@ export default function BoardDropdown({ isLocked }: props) {
           />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-[12rem] bg-veryDarkGrey text-white border-none mr-8 mt-5 py-3">
+      <DropdownMenuContent className="w-[12rem] bg-grey-darker text-white border-none mr-8 mt-5 py-3">
         <div className="flex flex-col gap-3 pl-3">
           {/* temporary solution */}
           <DropdownMenuItem
             asChild
-            className="text-md capitalize text-mediumGrey hover:opacity-60 duration-200"
+            className="text-md capitalize text-grey-medium hover:opacity-60 duration-200"
           >
             {isLocked ? (
               <span
                 onClick={() => errorToast("edit")}
-                className="pl-3 py-0 text-md capitalize text-mediumGrey opacity-60"
+                className="pl-3 py-0 text-md capitalize text-grey-medium opacity-60"
               >
                 edit board
               </span>
@@ -48,7 +48,7 @@ export default function BoardDropdown({ isLocked }: props) {
               <BoardModal
                 type="update"
                 trigger={
-                  <span className="pl-3 text-md capitalize text-mediumGrey hover:opacity-60 duration-200 cursor-pointer">
+                  <span className="pl-3 text-md capitalize text-grey-medium hover:opacity-60 duration-200 cursor-pointer">
                     edit board
                   </span>
                 }
@@ -59,7 +59,7 @@ export default function BoardDropdown({ isLocked }: props) {
             {isLocked ? (
               <span
                 onClick={() => errorToast("delete")}
-                className="pl-3 py-0 text-md  capitalize text-danger opacity-40"
+                className="pl-3 py-0 text-md  capitalize text-danger-medium opacity-40"
               >
                 delete board
               </span>
@@ -67,7 +67,7 @@ export default function BoardDropdown({ isLocked }: props) {
               <DeleteModal
                 type="board"
                 trigger={
-                  <span className="pl-3 text-md capitalize text-danger hover:opacity-60 duration-200 cursor-pointer">
+                  <span className="pl-3 text-md capitalize text-danger-medium hover:opacity-60 duration-200 cursor-pointer">
                     delete board
                   </span>
                 }

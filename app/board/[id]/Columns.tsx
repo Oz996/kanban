@@ -29,7 +29,7 @@ export default function Columns({ columns }: props) {
                   "bg-fuchsia-600": index === 4,
                 })}
               />
-              <h2 className="heading-sm text-mediumGrey uppercase tracking-[2.5px]">
+              <h2 className="heading-sm text-grey-medium uppercase tracking-[2.5px]">
                 {column.title} ({columnTasksCount})
               </h2>
             </div>

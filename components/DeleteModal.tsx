@@ -85,8 +85,8 @@ export default function DeleteModal({ type, trigger, task }: props) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="space-y-4 p-8 bg-darkGrey border-none text-mediumGrey">
-        <DialogTitle className="heading-lg text-danger">
+      <DialogContent className="space-y-4 p-8 bg-grey-dark border-none text-grey-medium">
+        <DialogTitle className="heading-lg text-danger-medium">
           Delete this {type}?
         </DialogTitle>
         <DialogHeader className="body-lg">{description}</DialogHeader>

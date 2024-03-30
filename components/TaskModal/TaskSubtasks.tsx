@@ -41,14 +41,16 @@ export default function TaskSubtasks({ subtasks, setSubtasks }: props) {
           key={index}
           className={classNames({
             "relative flex gap-3 items-center": true,
-            "border-danger focus-within:border-danger": subtask.error,
+            "border-danger-medium focus-within:border-danger-medium":
+              subtask.error,
           })}
         >
           <Input
             id="subtasks"
             className={classNames({
-              "col-span-3 bg-darkGrey input": true,
-              "border-danger focus-within:border-danger": subtask.error,
+              "col-span-3 bg-grey-dark input": true,
+              "border-danger-medium focus-within:border-danger-medium":
+                subtask.error,
             })}
             value={subtask.description}
             onChange={(e) => handleChange(e, index)}

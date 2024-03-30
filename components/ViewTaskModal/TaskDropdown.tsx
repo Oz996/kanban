@@ -30,7 +30,7 @@ export default function TaskDropdown({ task, column, columns }: props) {
       <DropdownMenuTrigger asChild className="relative">
         <div
           aria-haspopup="true"
-          className="flex items-center justify-center self-start min-w-6 h-9 rounded-full group bg-transparent hover:bg-veryDarkGrey duration-200 cursor-pointer"
+          className="flex items-center justify-center self-start min-w-6 h-9 rounded-full group bg-transparent hover:bg-grey-darker duration-200 cursor-pointer"
         >
           <Image
             className="group-hover:opacity-60 duration-200"
@@ -41,12 +41,12 @@ export default function TaskDropdown({ task, column, columns }: props) {
           />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-[12rem] bg-veryDarkGrey text-white border-none mr-8 mt-5 py-3">
+      <DropdownMenuContent className="w-[12rem] bg-grey-darker text-white border-none mr-8 mt-5 py-3">
         <div className="flex flex-col gap-3 pl-3">
           {/* temporary solution */}
           <DropdownMenuItem
             asChild
-            className="text-md capitalize text-mediumGrey hover:opacity-60 duration-200 cursor-pointer"
+            className="text-md capitalize text-grey-medium hover:opacity-60 duration-200 cursor-pointer"
           >
             <TaskModal
               type="update"
@@ -54,7 +54,7 @@ export default function TaskDropdown({ task, column, columns }: props) {
               columns={columns}
               column={column}
               trigger={
-                <span className="pl-3 text-md capitalize text-mediumGrey hover:opacity-60 duration-200 cursor-pointer">
+                <span className="pl-3 text-md capitalize text-grey-medium hover:opacity-60 duration-200 cursor-pointer">
                   edit task
                 </span>
               }
@@ -64,7 +64,7 @@ export default function TaskDropdown({ task, column, columns }: props) {
             {isLocked ? (
               <span
                 onClick={handleDisabledClick}
-                className="pl-3 text-md capitalize text-danger opacity-40"
+                className="pl-3 text-md capitalize text-danger-medium opacity-40"
               >
                 delete task
               </span>
@@ -73,7 +73,7 @@ export default function TaskDropdown({ task, column, columns }: props) {
                 type="task"
                 task={task}
                 trigger={
-                  <span className="pl-3 text-md capitalize text-danger hover:opacity-60 duration-200 cursor-pointer">
+                  <span className="pl-3 text-md capitalize text-danger-medium hover:opacity-60 duration-200 cursor-pointer">
                     delete task
                   </span>
                 }

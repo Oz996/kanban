@@ -25,9 +25,9 @@ export default function ButtonPrimary({
         "rounded-full capitalize font-bold duration-200": true,
         "h-[3rem]": size === "lg",
         "h-[2.5rem]": size === "sm",
-        "bg-mainPurple hover:bg-secondaryPurple": primary,
-        "bg-white text-mainPurple hover:bg-slate-200": secondary,
-        "bg-danger hover:bg-dangerHover": danger,
+        "bg-purple-medium hover:bg-purple-light": primary,
+        "bg-white text-purple-medium hover:bg-slate-200": secondary,
+        "bg-danger-medium hover:bg-danger-light": danger,
       })}
     >
       {children}

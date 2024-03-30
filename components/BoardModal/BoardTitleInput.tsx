@@ -30,14 +30,15 @@ export default function BoardTitleInput({
         defaultValue={updateMode ? boardTitle : undefined}
         placeholder={addMode ? "e.g. Web Design" : ""}
         className={classNames({
-          "col-span-3 bg-darkGrey input relative": true,
-          "border-danger focus-within:border-danger": errors?.title?.message,
+          "col-span-3 bg-grey-dark input relative": true,
+          "border-danger-medium focus-within:border-danger-medium":
+            errors?.title?.message,
         })}
       />
       {errors?.title?.message && (
         <p
           id="titleError"
-          className="body-lg text-danger border-danger absolute right-12 top-[8.2rem]"
+          className="body-lg text-danger-medium border-danger-medium absolute right-12 top-[8.2rem]"
         >
           {errors?.title?.message}
         </p>

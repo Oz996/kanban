@@ -20,7 +20,7 @@ export default function BoardModal({ type, trigger }: ModalProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="bg-darkGrey text-white max-h-[100vh]">
+      <DialogContent className="bg-grey-dark text-white max-h-[100vh]">
         <DialogHeader>
           <DialogTitle className="text-lg font-semibold capitalize">
             {addMode ? "add new board" : "edit board"}

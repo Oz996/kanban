@@ -87,7 +87,7 @@ export default function Sidebar({
       <button
         aria-label="Open sidebar"
         onClick={handleShowSidebar}
-        className="w-14 h-12 rounded-r-full bg-mainPurple md:flex justify-center items-center cursor-pointer absolute left-0 bottom-10 hover:bg-secondaryPurple duration-200 z-10 hidden"
+        className="w-14 h-12 rounded-r-full bg-purple-medium md:flex justify-center items-center cursor-pointer absolute left-0 bottom-10 hover:bg-purple-light duration-200 z-10 hidden"
       >
         <Image src={eyeOpen} width={18} height={18} alt="" aria-hidden="true" />
       </button>
@@ -97,7 +97,7 @@ export default function Sidebar({
   if (mobileBoard)
     return (
       <Dialog open={mobileBoard} onOpenChange={setMobileBoard}>
-        <DialogContent className="top-[16rem] max-w-[20rem] bg-darkGrey text-mediumGrey font-semibold px-0">
+        <DialogContent className="top-[16rem] max-w-[20rem] bg-grey-dark text-grey-medium font-semibold px-0">
           <div>
             <h1 className="uppercase heading-sm px-8 tracking-[2.5px] pb-3">
               all boards ({boards?.length})
@@ -108,9 +108,9 @@ export default function Sidebar({
                   <li
                     key={board.id}
                     className={classNames({
-                      "w-[90%] h-[3rem] hover:bg-secondaryPurple hover:text-white duration-200 cursor-pointer rounded-r-full px-8":
+                      "w-[90%] h-[3rem] hover:bg-purple-light hover:text-white duration-200 cursor-pointer rounded-r-full px-8":
                         true,
-                      "bg-mainPurple text-white": id === board.id,
+                      "bg-purple-medium text-white": id === board.id,
                     })}
                   >
                     <Link
@@ -132,7 +132,7 @@ export default function Sidebar({
                     </Link>
                   </li>
                 ))}
-                <div className="text-mainPurple cursor-pointer flex gap-3 items-center px-8 mt-3 hover:opacity-80 duration-200">
+                <div className="text-purple-medium cursor-pointer flex gap-3 items-center px-8 mt-3 hover:opacity-80 duration-200">
                   <Image
                     src={boardIcon}
                     width={15}
@@ -142,7 +142,7 @@ export default function Sidebar({
                   <BoardModal
                     type="add"
                     trigger={
-                      <h2 className="heading-md text-mainPurple capitalize">
+                      <h2 className="heading-md text-purple-medium capitalize">
                         + create new board
                       </h2>
                     }
@@ -160,7 +160,7 @@ export default function Sidebar({
     return (
       <aside
         className={classNames({
-          "w-[19rem] h-[calc(100%-6rem)] absolute bg-darkGrey border-r border-linesDark  text-mediumGrey font-semibold py-5":
+          "w-[19rem] h-[calc(100%-6rem)] absolute bg-grey-dark border-r border-lines-dark  text-grey-medium font-semibold py-5":
             true,
           "animate-sidebar-open": showSidebar && openedByClick,
           "animate-sidebar-closed": closedByClick,
@@ -177,9 +177,9 @@ export default function Sidebar({
                   <li
                     key={board.id}
                     className={classNames({
-                      "w-[90%] h-[3rem] hover:bg-secondaryPurple hover:text-white duration-200 cursor-pointer rounded-r-full px-8":
+                      "w-[90%] h-[3rem] hover:bg-purple-light hover:text-white duration-200 cursor-pointer rounded-r-full px-8":
                         true,
-                      "bg-mainPurple text-white": id === board.id,
+                      "bg-purple-medium text-white": id === board.id,
                     })}
                   >
                     <Link
@@ -215,7 +215,7 @@ export default function Sidebar({
                     </Link>
                   </li>
                 ))}
-                <div className="text-mainPurple cursor-pointer flex gap-3 items-center px-8 mt-3 hover:opacity-80 duration-200">
+                <div className="text-purple-medium cursor-pointer flex gap-3 items-center px-8 mt-3 hover:opacity-80 duration-200">
                   <Image
                     src={boardIcon}
                     width={15}
@@ -225,7 +225,7 @@ export default function Sidebar({
                   <BoardModal
                     type="add"
                     trigger={
-                      <h2 className="heading-md text-mainPurple capitalize">
+                      <h2 className="heading-md text-purple-medium capitalize">
                         + create new board
                       </h2>
                     }

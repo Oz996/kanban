@@ -65,7 +65,7 @@ export default function ViewTaskSubtasks({ subtasks }: props) {
         <div
           key={subtask.id}
           className={classNames({
-            "relative bg-veryDarkGrey p-3 rounded flex gap-3 items-center cursor-pointer hover:bg-mainPurple hover:bg-opacity-60 duration-200":
+            "relative bg-grey-darker p-3 rounded flex gap-3 items-center cursor-pointer hover:bg-purple-medium hover:bg-opacity-60 duration-200":
               true,
             "opacity-60": isLoading.id === subtask.id,
           })}

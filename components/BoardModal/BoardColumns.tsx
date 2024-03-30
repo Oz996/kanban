@@ -55,8 +55,9 @@ export default function BoardColumns({ columns, setColumns }: props) {
             aria-describedby="columnError"
             id="columns"
             className={classNames({
-              "col-span-3 bg-darkGrey input": true,
-              "border-danger focus-within:border-danger": column.error,
+              "col-span-3 bg-grey-dark input": true,
+              "border-danger-medium focus-within:border-danger-medium":
+                column.error,
             })}
             value={column.title}
             onChange={(e) => handleChange(e, index)}

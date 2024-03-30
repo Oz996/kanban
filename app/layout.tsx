@@ -26,7 +26,7 @@ export default async function RootLayout({
         <SessionProvider session={session}>
           <Providers>
             <Header />
-            <main className="bg-veryDarkGrey">{children}</main>
+            <main className="bg-grey-darker">{children}</main>
           </Providers>
         </SessionProvider>
       </body>

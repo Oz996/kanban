@@ -48,7 +48,7 @@ export default function Header() {
   const modalTriggerMobile = (
     <Button
       disabled={isLocked}
-      className="rounded-full w-[3.5rem] text-3xl pb-4 text-center bg-mainPurple hover:bg-secondaryPurple"
+      className="rounded-full w-[3.5rem] text-3xl pb-4 text-center bg-purple-medium hover:bg-purple-light"
     >
       +
     </Button>
@@ -58,7 +58,7 @@ export default function Header() {
     <header
       role="banner"
       className={classNames({
-        "absolute left-0 right-0 h-[6rem] bg-darkGrey items-center flex border-b border-linesDark":
+        "absolute left-0 right-0 h-[6rem] bg-grey-dark items-center flex border-b border-lines-dark":
           true,
         hidden: isHomePage,
       })}

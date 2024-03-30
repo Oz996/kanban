@@ -28,12 +28,13 @@ export default function TaskTitleInput({
         placeholder={addMode ? "e.g. Take coffee break" : ""}
         id="title"
         className={classNames({
-          "col-span-3 bg-darkGrey input relative": true,
-          "border-danger focus-within:border-danger": errors?.title?.message,
+          "col-span-3 bg-grey-dark input relative": true,
+          "border-danger-medium focus-within:border-danger-medium":
+            errors?.title?.message,
         })}
       />
       {errors?.title?.message && (
-        <p className="body-lg text-danger absolute right-12 top-[8.2rem]">
+        <p className="body-lg text-danger-medium absolute right-12 top-[8.2rem]">
           {errors.title.message}
         </p>
       )}

@@ -27,14 +27,14 @@ export default function ViewTaskModal({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="bg-darkGrey text-white">
+      <DialogContent className="bg-grey-dark text-white">
         <DialogHeader>
           <DialogTitle className="text-lg font-semibold flex justify-between items-center">
             {task?.title}
             <TaskDropdown column={column!} columns={columns!} task={task!} />
           </DialogTitle>
         </DialogHeader>
-        <DialogDescription className="heading-md text-mediumGrey mb-8">
+        <DialogDescription className="heading-md text-grey-medium mb-8">
           {task?.description ? task.description : "No description"}
         </DialogDescription>
         <ViewTaskSubtasks subtasks={subtasks} />

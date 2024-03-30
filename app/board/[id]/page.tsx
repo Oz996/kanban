@@ -49,7 +49,7 @@ export default function Page({ params }: { params: { id: any } }) {
   //     <section className="flex pt-24 h-screen">
   //       <Sidebar />
   //       <div className="flex flex-col gap-6 items-center justify-center h-screen self-center w-full">
-  //         <p className="text-mediumGrey">
+  //         <p className="text-grey-medium">
   //           This board is empty. Create a new column to get started
   //         </p>
   //         <BoardModal type="update" trigger={modalTrigger} />
@@ -79,7 +79,7 @@ export default function Page({ params }: { params: { id: any } }) {
           <BoardModal
             type="update"
             trigger={
-              <div className="w-[17.5rem] h-[calc(100vh-11rem)] mt-10 bg-gradient-to-b from-darkGrey to-veryDarkGrey to-95% rounded-lg flex justify-center items-center cursor-pointer text-mediumGrey hover:text-mainPurple duration-200">
+              <div className="w-[17.5rem] h-[calc(100vh-11rem)] mt-10 bg-gradient-to-b from-grey-dark to-grey-darker to-95% rounded-lg flex justify-center items-center cursor-pointer text-grey-medium hover:text-purple-medium duration-200">
                 <h2 className="capitalize heading-xl">+ new column</h2>
               </div>
             }

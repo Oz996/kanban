@@ -19,17 +19,25 @@ const config = {
     },
     extend: {
       colors: {
-        inputBorder: "rgba(130,143,163,.4)",
-        mainPurple: "#635FC7",
-        secondaryPurple: "#A8A4FF",
-        veryDarkGrey: "#20212C",
-        darkGrey: "#2B2C37",
-        mediumGrey: "#828FA3",
-        lightGrey: "#F4F7FD",
-        linesDark: "#3E3F4E",
-        linesLight: "#E4EBFA",
-        danger: "#EA5555",
-        dangerHover: "#FF9898",
+        grey: {
+          light: "#F4F7FD",
+          medium: "#828FA3",
+          dark: "#2B2C37",
+          darker: "#20212C",
+        },
+        purple: {
+          medium: "#635FC7",
+          light: "#A8A4FF",
+        },
+        danger: {
+          medium: "#EA5555",
+          light: "#FF9898",
+        },
+        lines: {
+          dark: "#3E3F4E",
+          light: "#E4EBFA",
+        },
+        input_border: "rgba(130,143,163,.4)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
