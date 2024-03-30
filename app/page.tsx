@@ -1,11 +1,10 @@
 "use client";
-
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import GoogleAuthButton from "./GoogleAuthButton";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useFetchBoards } from "@/hooks/useFetchBoards";
-import { Button } from "@/components/ui/button";
+import GuestSignInButton from "./GuestSignInButton";
 
 export default function Page() {
   const { data: session } = useSession();
@@ -22,12 +21,6 @@ export default function Page() {
     if (session && firstBoardId) router.push(`/board/${firstBoardId}`);
   }, [session, router, firstBoardId]);
 
-  const handleGuestSignIn = async () => {
-    await signIn("credentials", {
-      username: "Guest",
-      password: "kanban123",
-    });
-  };
   return (
     <section className="h-screen pt-24">
       <div className="text-white font-semibold flex flex-col justify-center items-center gap-5">
@@ -36,7 +29,7 @@ export default function Page() {
           <p className="text-2xl mt-3">Sign in</p>
         </hgroup>
         <GoogleAuthButton />
-        <Button onClick={handleGuestSignIn}>Enter as guest</Button>
+        <GuestSignInButton />
       </div>
     </section>
   );
