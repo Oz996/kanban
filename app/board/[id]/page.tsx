@@ -1,5 +1,4 @@
 "use client";
-import {} from "@/services/services";
 import { Column } from "@/types";
 import Columns from "./Columns";
 import BoardModal from "@/components/BoardModal/BoardModal";
@@ -9,8 +8,6 @@ import classNames from "classnames";
 import { useSidebar } from "@/hooks/useSidebar";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { useFetchBoard } from "@/hooks/useFetchBoard";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 import Sidebar from "@/components/Sidebar";
 
 export default function Page({ params }: { params: { id: any } }) {
@@ -18,11 +15,9 @@ export default function Page({ params }: { params: { id: any } }) {
   const [closedByClick, setClosedByClick] = useState(false);
 
   const { data: board } = useFetchBoard({ params });
-  const { data: session } = useSession();
   const { setBoard } = useBoard();
 
-  const router = useRouter();
-  const { showSidebar, setShowSidebar } = useSidebar();
+  const { showSidebar } = useSidebar();
   const isMobile = useMediaQuery("only screen and (max-width: 768px)");
 
   console.log("board", board);
@@ -30,11 +25,6 @@ export default function Page({ params }: { params: { id: any } }) {
   useEffect(() => {
     if (board) setBoard(board);
   }, [board, setBoard]);
-
-  // user gets routed to home page if not signed in
-  useEffect(() => {
-    if (!session) router.push("/");
-  }, [session, router]);
 
   const columns: Column[] = board?.columns;
 
