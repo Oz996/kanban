@@ -14,6 +14,7 @@ import { useSidebar } from "@/hooks/useSidebar";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import Sidebar from "./Sidebar";
+import { Skeleton } from "./ui/skeleton";
 
 export default function Header() {
   const [mobileBoard, setMobileBoard] = useState(false);

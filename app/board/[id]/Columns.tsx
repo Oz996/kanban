@@ -7,7 +7,6 @@ interface props {
 }
 
 export default function Columns({ columns }: props) {
-  console.log("props cols", columns);
   return (
     <>
       {columns?.map((column, index) => {
