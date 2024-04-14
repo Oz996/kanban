@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { getServerSession } from "next-auth";
-import SessionProvider from "./SessionProvider";
 import Header from "@/components/Header";
 import { Providers } from "./providers";
 
@@ -18,17 +17,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession();
-
   return (
     <html lang="en">
       <body className={plusJakarta.className}>
-        <SessionProvider session={session}>
-          <Providers>
-            <Header />
-            <main className="bg-grey-darker">{children}</main>
-          </Providers>
-        </SessionProvider>
+        <Providers>
+          <Header />
+          <main className="bg-grey-darker">{children}</main>
+        </Providers>
       </body>
     </html>
   );
