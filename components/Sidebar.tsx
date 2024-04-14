@@ -43,9 +43,6 @@ export default function Sidebar({
 }: props) {
   // States and variables ---------------------------------
   const { data: boards, isLoading } = useFetchBoards();
-
-  console.log("boards?", boards);
-
   const { showSidebar, setShowSidebar } = useSidebar();
   const { id } = useParams();
   // -----------------------------------------------------
