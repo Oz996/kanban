@@ -42,7 +42,6 @@ export default function Sidebar({
   setClosedByClick,
 }: props) {
   // States and variables ---------------------------------
-  const { data: session } = useSession();
   const { data: boards, isLoading } = useFetchBoards();
 
   console.log("boards?", boards);
