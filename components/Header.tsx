@@ -15,6 +15,7 @@ import { useSidebar } from "@/hooks/useSidebar";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import Sidebar from "./Sidebar";
+import { Skeleton } from "./ui/skeleton";
 
 export default function Header() {
   const [mobileBoard, setMobileBoard] = useState(false);
@@ -80,9 +81,14 @@ export default function Header() {
             onClick={handleDisplayMobileBoard}
             className="flex gap-3 items-center"
           >
-            <h1 className="heading-lg md:heading-xl max-w-[40vw] md:max-w-[18rem] truncate">
-              {board?.title}
-            </h1>
+            {board?.title ? (
+              <h1 className="heading-lg md:heading-xl max-w-[40vw] md:max-w-[18rem] truncate">
+                {board?.title}
+              </h1>
+            ) : (
+              <Skeleton className="w-[15rem] h-[2rem]" />
+            )}
+
             {isMobile &&
               (mobileBoard ? (
                 <Image width={15} height={15} src={chevronUp} alt="" />

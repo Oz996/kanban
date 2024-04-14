@@ -23,6 +23,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
+import { Skeleton } from "./ui/skeleton";
 
 interface props {
   mobileBoard?: boolean;
@@ -43,7 +44,7 @@ export default function Sidebar({
 }: props) {
   // States and variables ---------------------------------
   const { data: session } = useSession();
-  const { data: boards } = useFetchBoards();
+  const { data: boards, isLoading } = useFetchBoards();
 
   const isMobile = useMediaQuery("only screen and (max-width: 768px)");
 
@@ -166,55 +167,71 @@ export default function Sidebar({
           "animate-sidebar-closed": closedByClick,
         })}
       >
-        <h1 className="uppercase px-8 heading-sm tracking-[2.5px] pb-3">
-          all boards ({boards?.length})
-        </h1>
+        {isLoading ? (
+          <Skeleton className="ml-8 mb-2 h-5 w-[8rem]" />
+        ) : (
+          <h1 className="uppercase px-8 heading-sm tracking-[2.5px] pb-3">
+            all boards ({boards?.length})
+          </h1>
+        )}
         <div className="flex flex-col justify-between h-[calc(100%-3rem)]">
           <div>
             <nav>
               <ul role="navigation" className="flex flex-col">
-                {boards?.map((board: Board) => (
-                  <li
-                    key={board.id}
-                    className={classNames({
-                      "w-[90%] h-[3rem] hover:bg-purple-light hover:text-white duration-200 cursor-pointer rounded-r-full px-8":
-                        true,
-                      "bg-purple-medium text-white": id === board.id,
-                    })}
-                  >
-                    <Link
-                      className="h-full flex gap-3 items-center"
-                      href={`/board/${board.id}`}
-                    >
-                      <Image
-                        src={handleIconToDisplay(board)}
-                        width={15}
-                        height={15}
-                        alt=""
-                        aria-hidden
-                      ></Image>
-                      {board.isLocked ? (
-                        <div className="flex gap-2 items-center">
-                          <h2 className="heading-md truncate">{board.title}</h2>
-                          <LockIcon size={15} />
-                        </div>
-                      ) : (
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger asChild>
+                {isLoading ? (
+                  <div className="flex flex-col gap-1">
+                    <Skeleton className="h-[3rem] w-[90%] rounded-r-full" />
+                    <Skeleton className="h-[3rem] w-[90%] rounded-r-full" />
+                    <Skeleton className="h-[3rem] w-[90%] rounded-r-full" />
+                  </div>
+                ) : (
+                  <>
+                    {boards?.map((board: Board) => (
+                      <li
+                        key={board.id}
+                        className={classNames({
+                          "w-[90%] h-[3rem] hover:bg-purple-light hover:text-white duration-200 cursor-pointer rounded-r-full px-8":
+                            true,
+                          "bg-purple-medium text-white": id === board.id,
+                        })}
+                      >
+                        <Link
+                          className="h-full flex gap-3 items-center"
+                          href={`/board/${board.id}`}
+                        >
+                          <Image
+                            src={handleIconToDisplay(board)}
+                            width={15}
+                            height={15}
+                            alt=""
+                            aria-hidden
+                          ></Image>
+                          {board.isLocked ? (
+                            <div className="flex gap-2 items-center">
                               <h2 className="heading-md truncate">
                                 {board.title}
                               </h2>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>{board.title}</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      )}
-                    </Link>
-                  </li>
-                ))}
+                              <LockIcon size={15} />
+                            </div>
+                          ) : (
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <h2 className="heading-md truncate">
+                                    {board.title}
+                                  </h2>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>{board.title}</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
+                          )}
+                        </Link>
+                      </li>
+                    ))}
+                  </>
+                )}
                 <div className="text-purple-medium cursor-pointer flex gap-3 items-center px-8 mt-3 hover:opacity-80 duration-200">
                   <Image
                     src={boardIcon}

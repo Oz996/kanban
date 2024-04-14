@@ -9,12 +9,13 @@ import { useSidebar } from "@/hooks/useSidebar";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { useFetchBoard } from "@/hooks/useFetchBoard";
 import Sidebar from "@/components/Sidebar";
+import ColumnSkeletons from "./ColumnSkeletons";
 
 export default function Page({ params }: { params: { id: any } }) {
   const [openedByClick, setOpenedByClick] = useState(false);
   const [closedByClick, setClosedByClick] = useState(false);
 
-  const { data: board } = useFetchBoard({ params });
+  const { data: board, isLoading } = useFetchBoard({ params });
   const { setBoard } = useBoard();
 
   const { showSidebar } = useSidebar();
@@ -64,7 +65,7 @@ export default function Page({ params }: { params: { id: any } }) {
           "animate-sidebar-closed-page": closedByClick,
         })}
       >
-        <Columns columns={columns} />
+        {isLoading ? <ColumnSkeletons /> : <Columns columns={columns} />}
         {columns?.length < 5 && (
           <BoardModal
             type="update"
