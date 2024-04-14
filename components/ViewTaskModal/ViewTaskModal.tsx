@@ -22,8 +22,6 @@ export default function ViewTaskModal({
   const [status, setStatus] = useState("");
   const subtasks: Subtask[] = task!.subtasks;
 
-  console.log("task", task);
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>

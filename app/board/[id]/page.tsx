@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { useBoard } from "@/hooks/useBoard";
 import classNames from "classnames";
 import { useSidebar } from "@/hooks/useSidebar";
-import { useMediaQuery } from "@uidotdev/usehooks";
 import { useFetchBoard } from "@/hooks/useFetchBoard";
 import Sidebar from "@/components/Sidebar";
 
@@ -16,11 +15,7 @@ export default function Page({ params }: { params: { id: any } }) {
 
   const { data: board } = useFetchBoard({ params });
   const { setBoard } = useBoard();
-
   const { showSidebar } = useSidebar();
-  const isMobile = useMediaQuery("only screen and (max-width: 768px)");
-
-  console.log("board", board);
 
   useEffect(() => {
     if (board) setBoard(board);
@@ -58,9 +53,8 @@ export default function Page({ params }: { params: { id: any } }) {
       <div
         className={classNames({
           "flex gap-6 py-5 px-6": true,
-          "ml-[19rem]": showSidebar && !isMobile,
-          "animate-sidebar-open-page":
-            showSidebar && openedByClick && !isMobile,
+          "md:ml-[19rem]": showSidebar,
+          "animate-sidebar-open-page": showSidebar && openedByClick,
           "animate-sidebar-closed-page": closedByClick,
         })}
       >

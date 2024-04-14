@@ -12,7 +12,6 @@ import { useParams } from "next/navigation";
 import BoardModal from "./BoardModal/BoardModal";
 import Link from "next/link";
 import classNames from "classnames";
-import { useMediaQuery } from "@uidotdev/usehooks";
 import { useFetchBoards } from "@/hooks/useFetchBoards";
 import { useSidebar } from "@/hooks/useSidebar";
 import { Dialog, DialogContent } from "./ui/dialog";
@@ -42,20 +41,10 @@ export default function Sidebar({
   setClosedByClick,
 }: props) {
   // States and variables ---------------------------------
-  const { data: session } = useSession();
   const { data: boards } = useFetchBoards();
-
-  const isMobile = useMediaQuery("only screen and (max-width: 768px)");
-
-  console.log("boards?", boards);
-
   const { showSidebar, setShowSidebar } = useSidebar();
   const { id } = useParams();
   // -----------------------------------------------------
-
-  useEffect(() => {
-    if (isMobile && !mobileBoard) setShowSidebar(false);
-  }, [isMobile, mobileBoard, setShowSidebar]);
 
   const handleSameBoardClick = (board: Board) => {
     if (board.id === id) setMobileBoard!(false);
@@ -97,10 +86,10 @@ export default function Sidebar({
   if (mobileBoard)
     return (
       <Dialog open={mobileBoard} onOpenChange={setMobileBoard}>
-        <DialogContent className="top-[16rem] max-w-[20rem] bg-grey-dark text-grey-medium font-semibold px-0">
+        <DialogContent className="top-[16rem] max-w-[20rem] bg-grey-dark text-grey-medium font-semibold px-0 md:hidden">
           <div>
             <h1 className="uppercase heading-sm px-8 tracking-[2.5px] pb-3">
-              all boards ({boards?.length})
+              all boardsaa ({boards?.length})
             </h1>
             <nav>
               <ul role="navigation" className="flex flex-col">
@@ -156,11 +145,11 @@ export default function Sidebar({
     );
 
   // sidebar desktop
-  if (!isMobile)
+  if (!mobileBoard)
     return (
       <aside
         className={classNames({
-          "w-[19rem] h-[calc(100%-6rem)] absolute bg-grey-dark border-r border-lines-dark  text-grey-medium font-semibold py-5":
+          "w-[19rem] h-[calc(100%-6rem)] absolute bg-grey-dark border-r border-lines-dark  text-grey-medium font-semibold py-5 hidden md:block":
             true,
           "animate-sidebar-open": showSidebar && openedByClick,
           "animate-sidebar-closed": closedByClick,
