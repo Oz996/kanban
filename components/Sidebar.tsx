@@ -43,13 +43,8 @@ export default function Sidebar({
   setClosedByClick,
 }: props) {
   // States and variables ---------------------------------
-  const { data: session } = useSession();
   const { data: boards, isLoading } = useFetchBoards();
-
   const isMobile = useMediaQuery("only screen and (max-width: 768px)");
-
-  console.log("boards?", boards);
-
   const { showSidebar, setShowSidebar } = useSidebar();
   const { id } = useParams();
   // -----------------------------------------------------
