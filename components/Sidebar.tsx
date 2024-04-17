@@ -99,7 +99,7 @@ export default function Sidebar({
               all boards ({boards?.length})
             </h1>
             <nav>
-              <ul role="navigation" className="flex flex-col">
+              <ul className="flex flex-col">
                 {boards?.map((board: Board) => (
                   <li
                     key={board.id}
@@ -128,7 +128,7 @@ export default function Sidebar({
                     </Link>
                   </li>
                 ))}
-                <div className="text-purple-medium cursor-pointer flex gap-3 items-center px-8 mt-3 hover:opacity-80 duration-200">
+                <li className="text-purple-medium cursor-pointer flex gap-3 items-center px-8 mt-3 hover:opacity-80 duration-200">
                   <Image
                     src={boardIcon}
                     width={15}
@@ -143,7 +143,7 @@ export default function Sidebar({
                       </h2>
                     }
                   ></BoardModal>
-                </div>
+                </li>
               </ul>
             </nav>
           </div>
@@ -172,7 +172,7 @@ export default function Sidebar({
         <div className="flex flex-col justify-between h-[calc(100%-3rem)]">
           <div>
             <nav>
-              <ul role="navigation" className="flex flex-col">
+              <ul className="flex flex-col">
                 {isLoading ? (
                   <div className="flex flex-col gap-1">
                     <Skeleton className="h-[3rem] w-[90%] rounded-r-full" />
@@ -227,7 +227,7 @@ export default function Sidebar({
                     ))}
                   </>
                 )}
-                <div className="text-purple-medium cursor-pointer flex gap-3 items-center px-8 mt-3 hover:opacity-80 duration-200">
+                <li className="text-purple-medium cursor-pointer flex gap-3 items-center px-8 mt-3 hover:opacity-80 duration-200">
                   <Image
                     src={boardIcon}
                     width={15}
@@ -242,7 +242,7 @@ export default function Sidebar({
                       </h2>
                     }
                   ></BoardModal>
-                </div>
+                </li>
               </ul>
             </nav>
           </div>
