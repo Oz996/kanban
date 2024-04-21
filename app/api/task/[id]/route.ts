@@ -53,7 +53,7 @@ export async function PUT(
           },
           data: {
             description: subtask.description,
-            completed: false,
+            completed: subtask.completed,
           },
         });
       }
