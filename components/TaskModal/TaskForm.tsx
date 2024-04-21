@@ -21,13 +21,6 @@ import { useBoard } from "@/hooks/useBoard";
 import { Loader2 } from "lucide-react";
 import { invalidateQuery } from "@/utils/invalidateQuery";
 
-const initState = {
-  description: "",
-  id: "",
-  error: "",
-  completed: false,
-};
-
 interface props {
   type: "add" | "update";
   task?: Task;
@@ -49,14 +42,7 @@ export default function TaskForm({
   const [status, setStatus] = useState(column?.title);
   const [columnId, setColumnId] = useState(column?.id);
   const [isLoading, setIsLoading] = useState(false);
-  const [subtasks, setSubtasks] = useState<SubtaskInput[]>([
-    {
-      description: "",
-      id: "",
-      error: "",
-      completed: false,
-    },
-  ]);
+  const [subtasks, setSubtasks] = useState<SubtaskInput[]>([]);
 
   const addMode = type === "add";
   const updateMode = type === "update";
@@ -68,6 +54,7 @@ export default function TaskForm({
   const originalValues = task?.subtasks;
 
   console.log("originalValues", originalValues);
+  console.log("subtasks", subtasks);
   // -----------------------------------------------------
 
   // if we are adding a new task set the default column to the first column of the board
@@ -94,7 +81,6 @@ export default function TaskForm({
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<Inputs>({
     resolver: zodResolver(taskSchema),
@@ -110,7 +96,6 @@ export default function TaskForm({
       setIsLoading(true);
       const res = await createTask({
         subtasks,
-        setSubtasks,
         status,
         columnId,
         data,
@@ -184,8 +169,6 @@ export default function TaskForm({
           addMode={addMode}
           setColumnId={setColumnId}
           setStatus={setStatus}
-          setSubtasks={setSubtasks}
-          subtasks={subtasks}
         />
       </div>
 

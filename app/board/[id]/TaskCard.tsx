@@ -26,7 +26,9 @@ export default function TaskCard({ tasks, columns, column }: props) {
               </CardTitle>
             </CardHeader>
             <CardContent className="heading-sm text-grey-medium">
-              {completed.length} of {subtasks.length} subtasks
+              {subtasks.length > 0
+                ? `${completed.length} of ${subtasks.length} subtasks`
+                : "No subtasks"}
             </CardContent>
           </Card>
         );

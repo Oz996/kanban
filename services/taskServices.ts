@@ -11,7 +11,6 @@ import { FieldValues } from "react-hook-form";
 
 interface DataProps {
   subtasks: SubtaskInput[];
-  setSubtasks: React.Dispatch<SetStateAction<SubtaskInput[]>>;
   status: string | undefined;
   columnId: string | undefined;
   data?: FieldValues;
@@ -19,11 +18,8 @@ interface DataProps {
 }
 
 export const createTask = async (props: DataProps) => {
-  const { subtasks, setSubtasks, status, columnId, data } = props;
+  const { subtasks, status, columnId, data } = props;
   try {
-    const invalid = invalidInputs("task", subtasks, setSubtasks);
-    if (invalid) return;
-
     const dataObject = {
       ...data,
       status,

@@ -57,6 +57,9 @@ export default function ViewTaskSubtasks({ subtasks }: props) {
     }
   };
 
+  if (subtasks.length === 0)
+    return <span className="heading-sm capitalize">no subtasks</span>;
+
   return (
     <div className="flex flex-col gap-3 mb-3">
       <span className="heading-sm">

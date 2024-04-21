@@ -15,8 +15,6 @@ interface props {
   status: string;
   columns: Column[];
   addMode: boolean;
-  subtasks: SubtaskInput[];
-  setSubtasks: React.Dispatch<SetStateAction<SubtaskInput[]>>;
   setStatus: React.Dispatch<SetStateAction<string | undefined>>;
   setColumnId: React.Dispatch<SetStateAction<string | undefined>>;
 }
@@ -32,23 +30,9 @@ export default function TaskSelect({
   status,
   columns,
   addMode,
-  subtasks,
-  setSubtasks,
   setStatus,
   setColumnId,
 }: props) {
-  const handleAddSubtask = () => {
-    const subtaskArray = [...subtasks];
-
-    subtaskArray.push({
-      description: "",
-      id: "",
-      error: "",
-      completed: false,
-    });
-    setSubtasks(subtaskArray);
-  };
-
   const handleChange = (value: string) => {
     setStatus(value);
     const selectedColumn = columns?.find((column) => column.title === value);
@@ -62,16 +46,6 @@ export default function TaskSelect({
 
   return (
     <Select value={status ?? columns?.[0].title} onValueChange={handleChange}>
-      {subtasks.length < 7 && (
-        <ButtonPrimary
-          onClick={handleAddSubtask}
-          type="button"
-          size="sm"
-          color="secondary"
-        >
-          + add new subtask
-        </ButtonPrimary>
-      )}
       <SelectTrigger className="col-span-3 input">
         <SelectValue placeholder={addMode ? "Status" : status} />
       </SelectTrigger>

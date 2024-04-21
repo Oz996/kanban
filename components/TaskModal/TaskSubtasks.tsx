@@ -4,6 +4,7 @@ import React, { ChangeEvent, SetStateAction } from "react";
 import { Input } from "../ui/input";
 import DynamicInput from "../DynamicInput";
 import { Label } from "../ui/label";
+import ButtonPrimary from "../ButtonPrimary";
 
 interface props {
   subtasks: SubtaskInput[];
@@ -30,7 +31,18 @@ export default function TaskSubtasks({ subtasks, setSubtasks }: props) {
     setSubtasks(newSubtasks);
   };
 
-  console.log("subtasks", subtasks);
+  const handleAddSubtask = () => {
+    const subtaskArray = [...subtasks];
+
+    subtaskArray.push({
+      description: "",
+      id: "",
+      error: "",
+      completed: false,
+    });
+    setSubtasks(subtaskArray);
+  };
+
   return (
     <>
       <Label htmlFor="subtasks" className="heading-sm capitalize">
@@ -55,7 +67,7 @@ export default function TaskSubtasks({ subtasks, setSubtasks }: props) {
             value={subtask.description}
             onChange={(e) => handleChange(e, index)}
           ></Input>
-          {subtasks.length > 1 && (
+          {subtasks.length > 0 && (
             <DynamicInput
               handleRemove={handleRemoveSubtask}
               index={index}
@@ -73,6 +85,16 @@ export default function TaskSubtasks({ subtasks, setSubtasks }: props) {
           </p>
         </div>
       ))}
+      {subtasks.length < 7 && (
+        <ButtonPrimary
+          onClick={handleAddSubtask}
+          type="button"
+          size="sm"
+          color="secondary"
+        >
+          + add new subtask
+        </ButtonPrimary>
+      )}
     </>
   );
 }
