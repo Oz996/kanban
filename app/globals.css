@@ -66,17 +66,28 @@
   }
 }
 
+@layer base {
+  :root {
+    --scrollbar-thumb-color: #cbcbcb;
+    --scrollbar-track-color: transparent;
+  }
+  .dark {
+    --scrollbar-thumb-color: #393a45;
+    --scrollbar-track-color: transparent;
+  }
+}
+
 /* scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
-  height: 6px;
+  height: 7px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: transparent;
+  background-color: var(--scrollbar-thumb-color);
   border-radius: 5px;
 }
 ::-webkit-scrollbar-track {
-  background-color: transparent;
+  background-color: var(--scrollbar-track-color);
 }
 
 @layer base {
