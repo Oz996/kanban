@@ -27,7 +27,7 @@ export default function ViewTaskModal({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
-      <DialogContent className="bg-grey-dark text-white">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-lg font-semibold flex justify-between items-center">
             {task?.title}

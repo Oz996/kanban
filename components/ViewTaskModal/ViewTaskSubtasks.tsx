@@ -65,7 +65,7 @@ export default function ViewTaskSubtasks({ subtasks }: props) {
         <div
           key={subtask.id}
           className={classNames({
-            "relative bg-grey-darker p-3 rounded flex gap-3 items-center cursor-pointer hover:bg-purple-medium hover:bg-opacity-60 duration-200":
+            "relative bg-grey-light dark:bg-grey-darker p-3 rounded flex gap-3 items-center cursor-pointer hover:bg-purple-medium hover:bg-opacity-60 duration-200":
               true,
             "opacity-60": isLoading.id === subtask.id,
           })}
@@ -75,7 +75,7 @@ export default function ViewTaskSubtasks({ subtasks }: props) {
           <Label
             htmlFor={subtask.id}
             className={classNames({
-              "heading-sm text-white cursor-pointer": true,
+              "heading-sm dark:text-white cursor-pointer": true,
               "line-through text-opacity-60": subtask.completed,
             })}
           >

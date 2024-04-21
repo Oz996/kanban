@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import logoLight from "@/assets/logo-light.svg";
+import logoDark from "@/assets/logo-dark.svg";
 import logoMobile from "@/assets/logo-mobile.svg";
 import chevronDown from "@/assets/icon-chevron-down.svg";
 import chevronUp from "@/assets/icon-chevron-up.svg";
@@ -16,6 +17,7 @@ import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import Sidebar from "./Sidebar";
 import { Skeleton } from "./ui/skeleton";
+import { useTheme } from "next-themes";
 
 export default function Header() {
   const [mobileBoard, setMobileBoard] = useState(false);
@@ -23,6 +25,7 @@ export default function Header() {
   const { showSidebar, setShowSidebar } = useSidebar();
 
   const path = usePathname();
+  const { theme } = useTheme();
   const columns = board?.columns;
 
   const isHomePage = path === "/";
@@ -59,7 +62,7 @@ export default function Header() {
     <header
       role="banner"
       className={classNames({
-        "absolute left-0 right-0 h-[6rem] bg-grey-dark items-center flex border-b border-lines-dark":
+        "absolute left-0 right-0 h-[6rem] bg-white dark:bg-grey-dark items-center flex border-b border-lines-light dark:border-lines-dark":
           true,
         hidden: isHomePage,
       })}
@@ -68,11 +71,19 @@ export default function Header() {
         <div className="flex gap-5 md:gap-32 items-center">
           {isMobile ? (
             <Image width={25} height={25} src={logoMobile} alt="logo" />
-          ) : (
+          ) : theme === "dark" ? (
             <Image
               width={160}
               height={160}
               src={logoLight}
+              alt="logo"
+              priority
+            />
+          ) : (
+            <Image
+              width={160}
+              height={160}
+              src={logoDark}
               alt="logo"
               priority
             />
@@ -82,7 +93,7 @@ export default function Header() {
             className="flex gap-3 items-center"
           >
             {board?.title ? (
-              <h1 className="heading-lg md:heading-xl max-w-[40vw] md:max-w-[18rem] truncate">
+              <h1 className="heading-lg md:heading-xl max-w-[40vw] md:max-w-[18rem] truncate text-black dark:text-white">
                 {board?.title}
               </h1>
             ) : (

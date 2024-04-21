@@ -22,7 +22,7 @@ export default function ButtonPrimary({
       type={type}
       className={classnames({
         [className!]: className,
-        "rounded-full capitalize font-bold duration-200": true,
+        "rounded-full capitalize font-bold duration-200 text-white": true,
         "h-[3rem]": size === "lg",
         "h-[2.5rem]": size === "sm",
         "bg-purple-medium hover:bg-purple-light": primary,

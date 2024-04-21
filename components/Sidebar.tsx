@@ -24,6 +24,11 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 import { Skeleton } from "./ui/skeleton";
+import { useTheme } from "next-themes";
+import { Switch } from "./ui/switch";
+import { Label } from "./ui/label";
+import Moon from "@/assets/icon-dark-theme.svg";
+import Sun from "@/assets/icon-light-theme.svg";
 
 interface props {
   mobileBoard?: boolean;
@@ -43,12 +48,15 @@ export default function Sidebar({
   setClosedByClick,
 }: props) {
   // States and variables ---------------------------------
-  const { data: boards, isLoading } = useFetchBoards();
   const isMobile = useMediaQuery("only screen and (max-width: 768px)");
+  const { data: boards, isLoading } = useFetchBoards();
   const { showSidebar, setShowSidebar } = useSidebar();
+
+  const { theme, setTheme } = useTheme();
   const { id } = useParams();
   // -----------------------------------------------------
 
+  console.log("theme", theme);
   useEffect(() => {
     if (isMobile && !mobileBoard) setShowSidebar(false);
   }, [isMobile, mobileBoard, setShowSidebar]);
@@ -75,6 +83,11 @@ export default function Sidebar({
     setTimeout(() => {
       setShowSidebar(false);
     }, 250);
+  };
+
+  const handleToggleTheme = () => {
+    if (theme === "dark") setTheme("light");
+    if (theme === "light") setTheme("dark");
   };
 
   // button that displays sidebar on click (desktop only)
@@ -156,7 +169,7 @@ export default function Sidebar({
     return (
       <aside
         className={classNames({
-          "w-[19rem] h-[calc(100%-6rem)] absolute bg-grey-dark border-r border-lines-dark  text-grey-medium font-semibold py-5":
+          "w-[19rem] h-[calc(100%-6rem)] absolute bg-white dark:bg-grey-dark border-r border-lines-light dark:border-lines-dark  text-grey-medium font-semibold py-5":
             true,
           "animate-sidebar-open": showSidebar && openedByClick,
           "animate-sidebar-closed": closedByClick,
@@ -246,14 +259,26 @@ export default function Sidebar({
               </ul>
             </nav>
           </div>
-          <button
-            aria-label="Close sidebar"
-            className="flex gap-3 items-center cursor-pointer mt-20 px-8 hover:opacity-80 duration-200"
-            onClick={handleCloseSidebar}
-          >
-            <Image src={eyeClosed} width={15} height={15} alt="" />
-            <p className="capitalize">hide sidebar</p>
-          </button>
+
+          <div>
+            <div className="flex gap-3 items-center justify-center bg-lines-light dark:bg-grey-darker rounded-lg p-3 mx-5">
+              <Image src={Sun} width={16} height={16} alt="" />
+              <Switch id="theme" onCheckedChange={handleToggleTheme}>
+                <Label htmlFor="theme" className="sr-only">
+                  Theme
+                </Label>
+              </Switch>
+              <Image src={Moon} width={16} height={16} alt="" />
+            </div>
+            <button
+              aria-label="Close sidebar"
+              className="flex gap-3 items-center cursor-pointer mt-20 px-8 hover:opacity-80 duration-200"
+              onClick={handleCloseSidebar}
+            >
+              <Image src={eyeClosed} width={15} height={15} alt="" />
+              <p className="capitalize">hide sidebar</p>
+            </button>
+          </div>
         </div>
       </aside>
     );

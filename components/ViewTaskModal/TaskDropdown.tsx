@@ -41,7 +41,7 @@ export default function TaskDropdown({ task, column, columns }: props) {
           />
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-[12rem] bg-grey-darker text-white border-none mr-8 mt-5 py-3">
+      <DropdownMenuContent className="w-[12rem] dark:bg-grey-darker dark:text-white border-none mr-8 mt-5 py-3">
         <div className="flex flex-col gap-3 pl-3">
           {/* temporary solution */}
           <DropdownMenuItem

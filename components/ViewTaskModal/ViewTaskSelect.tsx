@@ -77,16 +77,20 @@ export default function ViewTaskSelect({
 
   return (
     <Select disabled={isLoading} value={status} onValueChange={handleChange}>
-      <SelectTrigger className="col-span-3 bg-grey-dark input relative">
+      <SelectTrigger className="col-span-3 dark:bg-grey-dark input relative">
         <SelectValue placeholder={column.title} />
         {isLoading && (
           <Loader2 className="size-5 animate-spin absolute right-[2rem]" />
         )}
       </SelectTrigger>
-      <SelectContent className="bg-grey-darker input h-full text-white">
+      <SelectContent className="dark:bg-grey-darker input h-full">
         <SelectGroup>
           {columns?.map((column) => (
-            <SelectItem key={column.id} value={column.title}>
+            <SelectItem
+              key={column.id}
+              value={column.title}
+              className="cursor-pointer"
+            >
               {column.title}
             </SelectItem>
           ))}

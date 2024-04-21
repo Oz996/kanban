@@ -18,10 +18,10 @@ export default function TaskCard({ tasks, columns, column }: props) {
         const taskCard = (
           <Card
             key={task.id}
-            className="bg-grey-dark w-full cursor-pointer hover:opacity-60 duration-200 overflow-hidden shadow shrink-0"
+            className="bg-white dark:bg-grey-dark w-full cursor-pointer hover:opacity-80 hover:duration-200 overflow-hidden shadow shrink-0"
           >
             <CardHeader>
-              <CardTitle className="heading-md text-white line-clamp-3 w-full">
+              <CardTitle className="heading-md line-clamp-3 w-full">
                 {task.title}
               </CardTitle>
             </CardHeader>

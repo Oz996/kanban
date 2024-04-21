@@ -55,7 +55,7 @@ export default function BoardColumns({ columns, setColumns }: props) {
             aria-describedby="columnError"
             id="columns"
             className={classNames({
-              "col-span-3 bg-grey-dark input": true,
+              "col-span-3 input": true,
               "border-danger-medium focus-within:border-danger-medium":
                 column.error,
             })}
