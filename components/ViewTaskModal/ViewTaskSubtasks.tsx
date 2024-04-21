@@ -47,6 +47,7 @@ export default function ViewTaskSubtasks({ subtasks }: props) {
       const res = await updateSubtask(subtask.id, data);
 
       if (res.status === 200) {
+        console.log("done!");
         await invalidateQuery(queryClient, "board");
       }
     } catch (error: any) {
