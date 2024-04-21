@@ -70,7 +70,7 @@ export default function Page({ params }: { params: { id: any } }) {
           <BoardModal
             type="update"
             trigger={
-              <div className="w-[17.5rem] h-[calc(100vh-11rem)] mt-10 bg-gradient-to-b from-white to-lines-light dark:from-grey-dark dark:to-grey-darker dark:to-95% dark:from-15% from-70% rounded-lg flex justify-center items-center cursor-pointer text-grey-medium hover:text-purple-medium duration-200">
+              <div className="w-[17.5rem] h-[calc(100vh-11rem)] mt-10 bg-gradient-to-b from-white to-grey-light dark:from-grey-dark dark:to-grey-darker dark:to-95% dark:from-15% from-70% rounded-lg flex justify-center items-center cursor-pointer text-grey-medium hover:text-purple-medium duration-200">
                 <h2 className="capitalize heading-xl">+ new column</h2>
               </div>
             }
