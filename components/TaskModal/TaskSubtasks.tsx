@@ -48,7 +48,7 @@ export default function TaskSubtasks({ subtasks, setSubtasks }: props) {
           <Input
             id="subtasks"
             className={classNames({
-              "col-span-3 bg-grey-dark input": true,
+              "col-span-3 input": true,
               "border-danger-medium focus-within:border-danger-medium":
                 subtask.error,
             })}

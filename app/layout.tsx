@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 import SessionProvider from "./SessionProvider";
 import Header from "@/components/Header";
 import { Providers } from "./providers";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeProvider } from "@/app/ThemeProvider";
 
 const plusJakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 

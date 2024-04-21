@@ -31,7 +31,7 @@ export default function TaskDescription({
             : ""
         }
         className={classNames({
-          "col-span-3 bg-grey-dark input relative resize-none h-[7rem]": true,
+          "col-span-3 input relative resize-none h-[7rem]": true,
           "border-danger-medium focus-within:border-danger-medium":
             errors?.description?.message,
         })}

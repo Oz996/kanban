@@ -1,6 +1,5 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import eyeOpen from "@/assets/icon-show-sidebar.svg";
 import eyeClosed from "@/assets/icon-hide-sidebar.svg";
@@ -25,8 +24,6 @@ import {
 } from "./ui/tooltip";
 import { Skeleton } from "./ui/skeleton";
 import { useTheme } from "next-themes";
-import { Switch } from "./ui/switch";
-import { Label } from "./ui/label";
 import ThemeSwitch from "./ThemeSwitch";
 
 interface props {

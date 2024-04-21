@@ -72,13 +72,17 @@ export default function TaskSelect({
           + add new subtask
         </ButtonPrimary>
       )}
-      <SelectTrigger className="col-span-3 bg-grey-dark input">
+      <SelectTrigger className="col-span-3 input">
         <SelectValue placeholder={addMode ? "Status" : status} />
       </SelectTrigger>
-      <SelectContent className="bg-grey-darker input h-full text-white">
+      <SelectContent className="input h-full">
         <SelectGroup>
           {columns?.map((column) => (
-            <SelectItem key={column.id} value={column.title}>
+            <SelectItem
+              key={column.id}
+              value={column.title}
+              className="cursor-pointer"
+            >
               {column.title}
             </SelectItem>
           ))}

@@ -26,7 +26,8 @@ export default function ButtonPrimary({
         "h-[3rem]": size === "lg",
         "h-[2.5rem]": size === "sm",
         "bg-purple-medium hover:bg-purple-light": primary,
-        "bg-white text-purple-medium hover:bg-slate-200": secondary,
+        "bg-purple-medium bg-opacity-10 text-purple-medium hover:bg-slate-200":
+          secondary,
         "bg-danger-medium hover:bg-danger-light": danger,
       })}
     >

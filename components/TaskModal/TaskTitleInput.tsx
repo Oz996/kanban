@@ -28,7 +28,7 @@ export default function TaskTitleInput({
         placeholder={addMode ? "e.g. Take coffee break" : ""}
         id="title"
         className={classNames({
-          "col-span-3 bg-grey-dark input relative": true,
+          "col-span-3 input relative": true,
           "border-danger-medium focus-within:border-danger-medium":
             errors?.title?.message,
         })}

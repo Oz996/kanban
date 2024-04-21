@@ -39,7 +39,7 @@ export default function TaskModal({
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="max-h-[100vh]">
         <DialogHeader>
-          <DialogTitle className="text-lg font-semibold">
+          <DialogTitle className="text-lg font-semibold capitalize">
             {addMode ? "add new task" : "edit task"}
           </DialogTitle>
         </DialogHeader>
