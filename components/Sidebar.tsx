@@ -259,7 +259,7 @@ export default function Sidebar({
             <ThemeSwitch />
             <button
               aria-label="Close sidebar"
-              className="flex gap-3 items-center cursor-pointer mt-20 px-8 hover:opacity-80 duration-200"
+              className="flex gap-3 items-center cursor-pointer mt-6 px-8 hover:opacity-80 duration-200"
               onClick={handleCloseSidebar}
             >
               <Image src={eyeClosed} width={15} height={15} alt="" />

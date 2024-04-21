@@ -20,7 +20,7 @@ export default function BoardDropdown({ isLocked }: props) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="flex items-center justify-center w-6 h-9 rounded-full group bg-transparent hover:bg-grey-darker duration-200 cursor-pointer">
+        <div className="flex items-center justify-center w-6 h-9 rounded-full group bg-transparent hover:bg-grey-light dark:hover:bg-grey-darker duration-200 cursor-pointer">
           <Image
             className="group-hover:opacity-60 duration-200"
             width={5}

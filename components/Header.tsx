@@ -52,7 +52,7 @@ export default function Header() {
   const modalTriggerMobile = (
     <Button
       disabled={isLocked}
-      className="rounded-full w-[3.5rem] text-3xl pb-4 text-center bg-purple-medium hover:bg-purple-light text-black dark:text-white"
+      className="rounded-full w-[3.5rem] text-3xl pb-4 text-center bg-purple-medium hover:bg-purple-light text-white"
     >
       +
     </Button>

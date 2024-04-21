@@ -30,7 +30,7 @@ export default function TaskDropdown({ task, column, columns }: props) {
       <DropdownMenuTrigger asChild className="relative">
         <div
           aria-haspopup="true"
-          className="flex items-center justify-center self-start min-w-6 h-9 rounded-full group bg-transparent hover:bg-grey-darker duration-200 cursor-pointer"
+          className="flex items-center justify-center self-start min-w-6 h-9 rounded-full group bg-transparent hover:bg-grey-light dark:hover:bg-grey-darker duration-200 cursor-pointer"
         >
           <Image
             className="group-hover:opacity-60 duration-200"

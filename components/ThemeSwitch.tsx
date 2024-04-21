@@ -14,8 +14,8 @@ export default function ThemeSwitch() {
   };
 
   return (
-    <div className="flex gap-3 items-center justify-center bg-lines-light dark:bg-grey-darker rounded-lg p-3 mx-5">
-      <Image src={Sun} width={18} height={18} alt="" />
+    <div className="flex gap-5 items-center justify-center bg-lines-light dark:bg-grey-darker rounded-lg p-3 mx-5">
+      <Image src={Sun} width={20} height={20} alt="" />
       <Switch
         id="theme"
         checked={theme === "dark"}

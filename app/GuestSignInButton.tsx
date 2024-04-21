@@ -9,5 +9,12 @@ export default function GuestSignInButton() {
       password: "kanban123",
     });
   };
-  return <Button onClick={handleGuestSignIn}>Enter as guest</Button>;
+  return (
+    <Button
+      onClick={handleGuestSignIn}
+      className="bg-black text-white hover:bg-black hover:opacity-80 duration-300"
+    >
+      Enter as guest
+    </Button>
+  );
 }
