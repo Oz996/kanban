@@ -27,8 +27,7 @@ import { Skeleton } from "./ui/skeleton";
 import { useTheme } from "next-themes";
 import { Switch } from "./ui/switch";
 import { Label } from "./ui/label";
-import Moon from "@/assets/icon-dark-theme.svg";
-import Sun from "@/assets/icon-light-theme.svg";
+import ThemeSwitch from "./ThemeSwitch";
 
 interface props {
   mobileBoard?: boolean;
@@ -52,7 +51,7 @@ export default function Sidebar({
   const { data: boards, isLoading } = useFetchBoards();
   const { showSidebar, setShowSidebar } = useSidebar();
 
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const { id } = useParams();
   // -----------------------------------------------------
 
@@ -85,11 +84,6 @@ export default function Sidebar({
     }, 250);
   };
 
-  const handleToggleTheme = () => {
-    if (theme === "dark") setTheme("light");
-    if (theme === "light") setTheme("dark");
-  };
-
   // button that displays sidebar on click (desktop only)
   if (!showSidebar)
     return (
@@ -106,12 +100,12 @@ export default function Sidebar({
   if (mobileBoard)
     return (
       <Dialog open={mobileBoard} onOpenChange={setMobileBoard}>
-        <DialogContent className="top-[16rem] max-w-[20rem] bg-grey-dark text-grey-medium font-semibold px-0">
+        <DialogContent className="top-[16rem] max-w-[20rem] bg-white dark:bg-grey-dark text-grey-medium font-semibold px-0">
           <div>
             <h1 className="uppercase heading-sm px-8 tracking-[2.5px] pb-3">
               all boards ({boards?.length})
             </h1>
-            <nav>
+            <nav className="mb-10">
               <ul className="flex flex-col">
                 {boards?.map((board: Board) => (
                   <li
@@ -159,6 +153,7 @@ export default function Sidebar({
                 </li>
               </ul>
             </nav>
+            <ThemeSwitch />
           </div>
         </DialogContent>
       </Dialog>
@@ -261,15 +256,7 @@ export default function Sidebar({
           </div>
 
           <div>
-            <div className="flex gap-3 items-center justify-center bg-lines-light dark:bg-grey-darker rounded-lg p-3 mx-5">
-              <Image src={Sun} width={16} height={16} alt="" />
-              <Switch id="theme" onCheckedChange={handleToggleTheme}>
-                <Label htmlFor="theme" className="sr-only">
-                  Theme
-                </Label>
-              </Switch>
-              <Image src={Moon} width={16} height={16} alt="" />
-            </div>
+            <ThemeSwitch />
             <button
               aria-label="Close sidebar"
               className="flex gap-3 items-center cursor-pointer mt-20 px-8 hover:opacity-80 duration-200"
