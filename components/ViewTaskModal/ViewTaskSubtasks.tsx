@@ -80,7 +80,7 @@ export default function ViewTaskSubtasks({ subtasks }: props) {
             htmlFor={subtask.id}
             className={classNames({
               "heading-sm dark:text-white cursor-pointer": true,
-              "line-through text-opacity-60": subtask.completed,
+              "line-through opacity-50": subtask.completed,
             })}
           >
             {subtask.description}

@@ -49,7 +49,7 @@ export default function Page({ params }: { params: { id: any } }) {
   //   );
 
   return (
-    <section className="flex gap-1 pt-24 h-screen overflow-x-scroll">
+    <section className="flex gap-1 pt-24 h-screen overflow-x-auto">
       <Sidebar
         openedByClick={openedByClick}
         closedByClick={closedByClick}

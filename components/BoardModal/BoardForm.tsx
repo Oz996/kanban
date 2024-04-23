@@ -121,18 +121,6 @@ export default function BoardForm({ type, open, setOpen }: props) {
     }
   };
 
-  const handleCloseModal = () => {
-    setOpen((prev) => !prev);
-    setColumns([
-      {
-        title: "",
-        id: "",
-        error: "",
-      },
-    ]);
-    reset();
-  };
-
   return (
     <form
       onSubmit={
