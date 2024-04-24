@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 // model types
 export interface IObject {
@@ -48,14 +48,10 @@ export interface SubtaskInput {
 // ------------
 
 // element props
-export interface ButtonProps {
+export interface ButtonProps extends React.ButtonHTMLAttributes<any> {
   children: string | ReactNode;
-  className?: string;
   size: "sm" | "lg";
   color: "primary" | "secondary" | "danger";
-  type?: "submit" | "button";
-  onClick?: any;
-  disabled?: boolean;
 }
 
 export interface ModalProps {

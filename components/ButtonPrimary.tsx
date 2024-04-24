@@ -4,12 +4,10 @@ import classnames from "classnames";
 
 export default function ButtonPrimary({
   children,
-  className,
   size,
   color,
-  type,
-  onClick,
-  disabled,
+  className,
+  ...props
 }: ButtonProps) {
   const primary = color === "primary";
   const secondary = color === "secondary";
@@ -17,9 +15,7 @@ export default function ButtonPrimary({
 
   return (
     <Button
-      disabled={disabled}
-      onClick={onClick}
-      type={type}
+      {...props}
       className={classnames({
         [className!]: className,
         "rounded-full capitalize font-bold duration-200 text-white": true,
