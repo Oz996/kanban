@@ -6,7 +6,7 @@ interface props {
 }
 export const useFetchBoard = ({ params }: props) => {
   return useQuery({
-    queryKey: ["board"],
+    queryKey: ["board", params.id],
     queryFn: () => getBoard(params.id),
   });
 };
